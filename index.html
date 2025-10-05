@@ -18,7 +18,6 @@
             color: #fff;
             overflow: hidden;
             height: 100vh;
-            margin: 0;
         }
 
         h1, h2, h3 {
@@ -33,26 +32,6 @@
             width: 100%;
             height: 100%;
             z-index: 1;
-        }
-
-        /* Overlay de partículas */
-        .particle-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 2;
-        }
-
-        /* Container principal */
-        .main-container {
-            position: relative;
-            z-index: 10;
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
         }
 
         /* HUD Superior */
@@ -81,37 +60,12 @@
             background: rgba(255,255,255,0.2);
             transition: all 0.3s ease;
             cursor: pointer;
-            position: relative;
         }
 
         .progress-dot.active {
             background: #00ffff;
             box-shadow: 0 0 20px #00ffff;
             transform: scale(1.5);
-        }
-
-        .progress-dot::after {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 30px;
-            height: 30px;
-            border: 2px solid #00ffff;
-            border-radius: 50%;
-            opacity: 0;
-            transition: all 0.3s ease;
-        }
-
-        .progress-dot.active::after {
-            opacity: 1;
-            animation: pulse-ring 2s infinite;
-        }
-
-        @keyframes pulse-ring {
-            0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.5; }
-            50% { transform: translate(-50%, -50%) scale(1.5); opacity: 0; }
         }
 
         .slide-info {
@@ -124,14 +78,21 @@
             border: 1px solid rgba(0,255,255,0.3);
         }
 
-        /* Slides */
+        /* Container Principal */
+        .main-container {
+            position: relative;
+            z-index: 10;
+            height: 100vh;
+        }
+
         .slide {
             display: none;
             height: 100vh;
             align-items: center;
             justify-content: center;
-            padding: 100px 60px;
+            padding: 100px 60px 120px;
             opacity: 0;
+            overflow-y: auto;
         }
 
         .slide.active {
@@ -140,44 +101,37 @@
         }
 
         @keyframes slideEnter {
-            from {
-                opacity: 0;
-                transform: translateY(50px) scale(0.95);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0) scale(1);
-            }
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
-        /* SLIDE 1: Portal Holográfico */
+        .slide::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .slide::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .slide::-webkit-scrollbar-thumb {
+            background: linear-gradient(135deg, #ff00ff, #00ffff);
+            border-radius: 10px;
+        }
+
+        /* SLIDE 1: Portal */
         .portal-scene {
             text-align: center;
-            position: relative;
+            width: 100%;
         }
 
         .hologram-title {
-            font-size: 5em;
+            font-size: 5.5em;
             background: linear-gradient(135deg, #ff00ff, #00ffff, #ff00ff);
             background-size: 200% 200%;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             animation: gradient-shift 3s ease infinite;
-            text-shadow: 0 0 80px rgba(0,255,255,0.5);
-            margin-bottom: 30px;
-            position: relative;
-        }
-
-        .hologram-title::before {
-            content: attr(data-text);
-            position: absolute;
-            left: 0;
-            top: 2px;
-            z-index: -1;
-            background: linear-gradient(135deg, #ff00ff, #00ffff);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            opacity: 0.3;
+            margin-bottom: 40px;
         }
 
         @keyframes gradient-shift {
@@ -186,110 +140,21 @@
         }
 
         .subtitle-glitch {
-            font-size: 2em;
+            font-size: 2.5em;
             color: #00ffff;
             text-transform: uppercase;
             letter-spacing: 4px;
-            margin: 20px 0;
-            animation: glitch 3s infinite;
-        }
-
-        @keyframes glitch {
-            0%, 90%, 100% { transform: translate(0); }
-            92% { transform: translate(-2px, 2px); }
-            94% { transform: translate(2px, -2px); }
-            96% { transform: translate(-2px, -2px); }
+            margin: 35px 0;
         }
 
         .author-tag {
-            font-size: 1.3em;
+            font-size: 1.6em;
             color: #ff00ff;
-            margin-top: 40px;
-            opacity: 0.8;
-        }
-
-        .start-pulse {
-            margin-top: 60px;
-            font-size: 3em;
-            animation: pulse-icon 1.5s infinite;
-        }
-
-        @keyframes pulse-icon {
-            0%, 100% { transform: scale(1); opacity: 0.6; }
-            50% { transform: scale(1.2); opacity: 1; }
-        }
-
-        /* SLIDE 2: Cards Interativos 3D */
-        .interactive-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 40px;
-            max-width: 1400px;
-            perspective: 1000px;
-        }
-
-        .tech-card {
-            background: rgba(10, 10, 30, 0.6);
-            border: 2px solid rgba(0,255,255,0.3);
-            border-radius: 20px;
-            padding: 50px 30px;
-            text-align: center;
-            transition: all 0.4s ease;
-            transform-style: preserve-3d;
-            cursor: pointer;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .tech-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(0,255,255,0.3), transparent);
-            transition: left 0.5s ease;
-        }
-
-        .tech-card:hover::before {
-            left: 100%;
-        }
-
-        .tech-card:hover {
-            transform: translateY(-20px) rotateY(5deg);
-            border-color: #00ffff;
-            box-shadow: 0 30px 80px rgba(0,255,255,0.4);
-        }
-
-        .card-icon-animated {
-            font-size: 5em;
-            margin-bottom: 30px;
-            animation: float-icon 3s ease-in-out infinite;
-            filter: drop-shadow(0 0 30px currentColor);
-        }
-
-        @keyframes float-icon {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-15px); }
-        }
-
-        .tech-card:nth-child(1) .card-icon-animated { animation-delay: 0s; }
-        .tech-card:nth-child(2) .card-icon-animated { animation-delay: 0.3s; }
-        .tech-card:nth-child(3) .card-icon-animated { animation-delay: 0.6s; }
-
-        .tech-card h3 {
-            font-size: 2em;
-            color: #00ffff;
-            margin-bottom: 20px;
-        }
-
-        .tech-card p {
-            font-size: 1.2em;
+            margin-top: 50px;
             line-height: 1.8;
-            color: #ccc;
         }
 
+        /* SLIDE 2: Cards */
         .section-title-3d {
             font-size: 4em;
             text-align: center;
@@ -297,58 +162,104 @@
             background: linear-gradient(135deg, #ff00ff, #00ffff);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            animation: title-entrance 1s ease;
         }
 
-        @keyframes title-entrance {
-            from { transform: translateY(-50px); opacity: 0; }
-            to { transform: translateY(0); opacity: 1; }
+        .cards-grid {
+            display: flex;
+            justify-content: center;
+            align-items: stretch;
+            gap: 30px;
+            max-width: 1400px;
+            width: 100%;
         }
 
-        /* SLIDE 3: Comparação Visual Interativa */
-        .battle-container {
-            display: grid;
-            grid-template-columns: 1fr auto 1fr;
-            gap: 60px;
-            max-width: 1600px;
+        .info-card {
+            flex: 1;
+            max-width: 400px;
+            background: rgba(0, 255, 255, 0.05);
+            border: 2px solid rgba(0, 255, 255, 0.3);
+            border-radius: 20px;
+            padding: 40px;
+            text-align: center;
+            transition: all 0.4s ease;
+            cursor: pointer;
+        }
+
+        .info-card:hover {
+            transform: translateY(-10px);
+            border-color: #00ffff;
+            box-shadow: 0 20px 60px rgba(0, 255, 255, 0.3);
+        }
+
+        .card-icon-animated {
+            font-size: 5em;
+            margin-bottom: 30px;
+            animation: float-icon 3s ease-in-out infinite;
+        }
+
+        @keyframes float-icon {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+        }
+
+        .info-card h3 {
+            font-size: 2em;
+            color: #00ffff;
+            margin-bottom: 15px;
+        }
+
+        .info-card p {
+            font-size: 1.4em;
+            color: #ddd;
+            line-height: 1.8;
+        }
+
+        /* SLIDE 3: Comparação */
+        .comparison-grid {
+            display: flex;
+            justify-content: center;
             align-items: center;
+            gap: 40px;
+            max-width: 1600px;
+            width: 100%;
         }
 
-        .battle-side {
-            background: rgba(10, 10, 30, 0.4);
-            padding: 60px 40px;
-            border-radius: 30px;
-            position: relative;
+        .comparison-side {
+            flex: 1;
+            background: rgba(255, 255, 255, 0.03);
+            padding: 50px;
+            border-radius: 20px;
             transition: all 0.5s ease;
         }
 
-        .battle-left {
+        .comparison-left {
             border: 3px solid #ff00ff;
             box-shadow: 0 0 40px rgba(255,0,255,0.3);
         }
 
-        .battle-left:hover {
+        .comparison-left:hover {
             box-shadow: 0 0 80px rgba(255,0,255,0.6);
             transform: translateX(-10px) scale(1.02);
         }
 
-        .battle-right {
+        .comparison-right {
             border: 3px solid #00ffff;
             box-shadow: 0 0 40px rgba(0,255,255,0.3);
         }
 
-        .battle-right:hover {
+        .comparison-right:hover {
             box-shadow: 0 0 80px rgba(0,255,255,0.6);
             transform: translateX(10px) scale(1.02);
         }
 
         .vs-divider {
-            font-size: 6em;
+            font-size: 8em;
             font-family: 'Orbitron', sans-serif;
             background: linear-gradient(135deg, #ff00ff, #00ffff);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             animation: rotate-vs 4s linear infinite;
+            flex-shrink: 0;
         }
 
         @keyframes rotate-vs {
@@ -356,38 +267,24 @@
             to { transform: rotate(360deg); }
         }
 
-        .battle-side h3 {
-            font-size: 2.5em;
-            margin-bottom: 40px;
-            display: flex;
-            align-items: center;
-            gap: 20px;
+        .comparison-side h3 {
+            font-size: 2.8em;
+            margin-bottom: 30px;
         }
 
-        .battle-left h3 { color: #ff00ff; }
-        .battle-right h3 { color: #00ffff; }
+        .comparison-left h3 { color: #ff00ff; }
+        .comparison-right h3 { color: #00ffff; }
 
         .battle-list {
             list-style: none;
         }
 
         .battle-list li {
-            font-size: 1.4em;
-            margin: 25px 0;
-            padding-left: 40px;
+            font-size: 1.5em;
+            margin: 20px 0;
+            padding-left: 35px;
             position: relative;
-            opacity: 0;
-            animation: fadeInItem 0.5s ease forwards;
-        }
-
-        .battle-list li:nth-child(1) { animation-delay: 0.2s; }
-        .battle-list li:nth-child(2) { animation-delay: 0.4s; }
-        .battle-list li:nth-child(3) { animation-delay: 0.6s; }
-        .battle-list li:nth-child(4) { animation-delay: 0.8s; }
-
-        @keyframes fadeInItem {
-            from { opacity: 0; transform: translateX(-20px); }
-            to { opacity: 1; transform: translateX(0); }
+            line-height: 1.7;
         }
 
         .battle-list li::before {
@@ -395,116 +292,54 @@
             position: absolute;
             left: 0;
             font-size: 1.5em;
-            animation: pulse-diamond 2s infinite;
         }
 
-        @keyframes pulse-diamond {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.3); }
-        }
+        .comparison-left li::before { color: #ff00ff; }
+        .comparison-right li::before { color: #00ffff; }
 
-        .battle-left li::before { color: #ff00ff; }
-        .battle-right li::before { color: #00ffff; }
-
-        /* SLIDE 4: Carrossel Futurista */
-        .carousel-3d {
+        /* SLIDE 4: Profissões em Linha */
+        .professions-line {
+            display: flex;
+            gap: 30px;
             max-width: 1600px;
             width: 100%;
-            position: relative;
-            perspective: 2000px;
         }
 
-        .carousel-track {
-            display: flex;
-            gap: 40px;
-            padding: 40px 20px;
-            overflow-x: auto;
-            scroll-snap-type: x mandatory;
-            scrollbar-width: thin;
-            scrollbar-color: #ff00ff rgba(255, 255, 255, 0.1);
-        }
-
-        .carousel-track::-webkit-scrollbar {
-            height: 10px;
-        }
-
-        .carousel-track::-webkit-scrollbar-track {
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 10px;
-        }
-
-        .carousel-track::-webkit-scrollbar-thumb {
-            background: linear-gradient(90deg, #ff00ff, #00ffff);
-            border-radius: 10px;
-        }
-
-        .carousel-track::-webkit-scrollbar-thumb:hover {
-            background: linear-gradient(90deg, #ff00ff, #00ffff);
-            box-shadow: 0 0 10px rgba(255, 0, 255, 0.5);
-        }
-
-        .job-card {
-            min-width: 350px;
-            background: linear-gradient(135deg, rgba(255,0,255,0.1), rgba(0,255,255,0.1));
+        .profession-item {
+            flex: 1;
+            background: linear-gradient(135deg, rgba(255, 0, 255, 0.1), rgba(0, 255, 255, 0.1));
             border: 2px solid #ff00ff;
-            border-radius: 25px;
-            padding: 50px 40px;
-            scroll-snap-align: center;
-            transform-style: preserve-3d;
-            transition: all 0.5s ease;
+            border-radius: 20px;
+            padding: 40px 25px;
+            text-align: center;
+            transition: all 0.4s ease;
             cursor: pointer;
-            position: relative;
         }
 
-        .job-card::after {
-            content: '';
-            position: absolute;
-            inset: 0;
-            border-radius: 25px;
-            background: linear-gradient(135deg, rgba(255,0,255,0.3), rgba(0,255,255,0.3));
-            opacity: 0;
-            transition: opacity 0.5s ease;
-        }
-
-        .job-card:hover::after {
-            opacity: 1;
-        }
-
-        .job-card:hover {
-            transform: translateY(-15px) rotateX(5deg);
-            box-shadow: 0 40px 100px rgba(255,0,255,0.5);
+        .profession-item:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 20px 60px rgba(255, 0, 255, 0.4);
             border-color: #00ffff;
         }
 
-        .job-icon {
+        .profession-icon {
             font-size: 4em;
             margin-bottom: 20px;
         }
 
-        .job-card h4 {
-            font-size: 2em;
+        .profession-item h4 {
+            font-size: 1.6em;
             color: #00ffff;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
         }
 
-        .job-card p {
+        .profession-item p {
             font-size: 1.2em;
-            line-height: 1.8;
-            color: #ccc;
+            line-height: 1.7;
+            color: #ddd;
         }
 
-        .skills-showcase {
-            margin-top: 80px;
-            margin-bottom: 40px;
-            text-align: center;
-        }
-
-        .skills-showcase h3 {
-            font-size: 2.5em;
-            color: #00ffff;
-            margin-bottom: 40px;
-        }
-
+        /* SLIDE 5: Habilidades */
         .skills-row {
             display: flex;
             justify-content: center;
@@ -512,8 +347,8 @@
         }
 
         .skill-orb {
-            width: 200px;
-            height: 200px;
+            width: 250px;
+            height: 250px;
             border-radius: 50%;
             background: radial-gradient(circle at 30% 30%, rgba(255,0,255,0.4), rgba(0,255,255,0.2));
             border: 3px solid #00ffff;
@@ -521,11 +356,12 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            font-size: 1.5em;
+            font-size: 1.7em;
             font-weight: bold;
             cursor: pointer;
             transition: all 0.5s ease;
             animation: float-orb 4s ease-in-out infinite;
+            position: relative;
         }
 
         .skill-orb:nth-child(1) { animation-delay: 0s; }
@@ -533,13 +369,13 @@
         .skill-orb:nth-child(3) { animation-delay: 1.4s; }
 
         @keyframes float-orb {
-            0%, 100% { transform: translateY(0) scale(1); }
-            50% { transform: translateY(-20px) scale(1.05); }
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
         }
 
         .skill-orb:hover {
             box-shadow: 0 0 80px rgba(0,255,255,0.8);
-            transform: scale(1.2) !important;
+            transform: scale(1.2);
         }
 
         .skill-orb .icon {
@@ -547,174 +383,245 @@
             margin-bottom: 10px;
         }
 
-        /* SLIDE 5: Terminal Interativo */
-        .terminal-interface {
-            max-width: 1000px;
-            width: 100%;
-        }
-
-        .terminal-window {
-            background: rgba(0,0,0,0.9);
+        .skill-tooltip {
+            position: absolute;
+            bottom: -120px;
+            left: 50%;
+            transform: translateX(-50%) scale(0);
+            width: 280px;
+            background: rgba(0, 0, 0, 0.95);
             border: 2px solid #00ffff;
             border-radius: 15px;
-            overflow: hidden;
-            box-shadow: 0 0 100px rgba(0,255,255,0.5);
-        }
-
-        .terminal-header {
-            background: linear-gradient(135deg, #ff00ff, #00ffff);
-            padding: 15px 20px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .terminal-btn {
-            width: 15px;
-            height: 15px;
-            border-radius: 50%;
-        }
-
-        .btn-close { background: #ff5555; }
-        .btn-minimize { background: #ffaa00; }
-        .btn-maximize { background: #00ff00; }
-
-        .terminal-body {
-            padding: 40px;
-            min-height: 400px;
-        }
-
-        .terminal-line {
-            font-family: 'Courier New', monospace;
-            font-size: 1.1em;
-            margin: 10px 0;
-            color: #00ff00;
-        }
-
-        .terminal-prompt {
-            color: #00ffff;
-        }
-
-        .terminal-input-area {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            margin-top: 30px;
-        }
-
-        .terminal-input {
-            flex: 1;
-            background: rgba(0,255,255,0.1);
-            border: 2px solid #00ffff;
-            border-radius: 10px;
             padding: 20px;
-            font-size: 1.3em;
+            font-size: 0.7em;
+            line-height: 1.6;
             color: #fff;
-            font-family: 'Courier New', monospace;
+            opacity: 0;
+            transition: all 0.4s ease;
+            pointer-events: none;
+            z-index: 100;
         }
 
-        .terminal-button {
-            padding: 20px 40px;
-            font-size: 1.2em;
-            font-family: 'Orbitron', sans-serif;
-            background: linear-gradient(135deg, #ff00ff, #00ffff);
-            border: none;
+        .skill-orb:hover .skill-tooltip {
+            opacity: 1;
+            transform: translateX(-50%) scale(1);
+        }
+
+        /* SLIDE 6: Timeline */
+        .tech-timeline {
+            position: relative;
+            height: 200px;
+            margin-bottom: 100px;
+        }
+
+        .timeline-track {
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 8px;
+            background: linear-gradient(90deg, #ff00ff, #00ffff, #ff00ff);
+            background-size: 200% 100%;
+            animation: flow-track 3s linear infinite;
+            box-shadow: 0 0 30px rgba(0, 255, 255, 0.8);
             border-radius: 10px;
-            color: #fff;
+        }
+
+        @keyframes flow-track {
+            0% { background-position: 0% 50%; }
+            100% { background-position: 200% 50%; }
+        }
+
+        .timeline-node {
+            position: absolute;
+            top: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .node-dot {
+            width: 30px;
+            height: 30px;
+            background: #00ffff;
+            border: 5px solid #000;
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            box-shadow: 0 0 30px #00ffff;
             cursor: pointer;
             transition: all 0.3s ease;
-            text-transform: uppercase;
         }
 
-        .terminal-button:hover {
-            transform: scale(1.05);
-            box-shadow: 0 0 40px rgba(0,255,255,0.8);
+        .node-dot:hover {
+            transform: scale(1.5);
+            box-shadow: 0 0 60px #00ffff;
         }
 
-        .typing-cursor {
-            display: inline-block;
-            width: 10px;
-            height: 20px;
-            background: #00ff00;
-            animation: blink 1s infinite;
-            margin-left: 5px;
+        .node-dot.active {
+            width: 40px;
+            height: 40px;
+            background: #ff00ff;
+            box-shadow: 0 0 60px #ff00ff;
         }
 
-        @keyframes blink {
-            0%, 50% { opacity: 1; }
-            51%, 100% { opacity: 0; }
-        }
-
-        /* SLIDE 6: Finale Épico */
-        .finale-scene {
+        .node-content {
             text-align: center;
-            max-width: 1400px;
+            min-width: 150px;
         }
 
-        .fusion-display {
-            display: grid;
-            grid-template-columns: 1fr auto 1fr;
-            gap: 80px;
-            align-items: center;
-            margin-bottom: 80px;
-        }
-
-        .entity-icon {
-            font-size: 15em;
-            animation: pulse-entity 3s ease-in-out infinite;
-            cursor: pointer;
-        }
-
-        .entity-icon:hover {
-            animation: none;
-            transform: scale(1.2) rotate(10deg);
-        }
-
-        .brain-entity {
-            color: #ff00ff;
-            filter: drop-shadow(0 0 80px #ff00ff);
-        }
-
-        .ai-entity {
-            color: #00ffff;
-            filter: drop-shadow(0 0 80px #00ffff);
-        }
-
-        @keyframes pulse-entity {
-            0%, 100% { transform: scale(1); filter: drop-shadow(0 0 50px currentColor); }
-            50% { transform: scale(1.1); filter: drop-shadow(0 0 100px currentColor); }
-        }
-
-        .plus-symbol {
-            font-size: 8em;
+        .node-year {
             font-family: 'Orbitron', sans-serif;
+            font-size: 2em;
+            color: #00ffff;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+
+        .node-title {
+            font-size: 1.8em;
+            color: #fff;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .node-desc {
+            font-size: 1.3em;
+            color: #ccc;
+        }
+
+        .impact-stats {
+            display: flex;
+            justify-content: space-around;
+            gap: 30px;
+        }
+
+        .impact-box {
+            flex: 1;
+            background: linear-gradient(135deg, rgba(255, 0, 255, 0.15), rgba(0, 255, 255, 0.15));
+            border: 3px solid #00ffff;
+            border-radius: 25px;
+            padding: 40px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.5s ease;
+        }
+
+        .impact-box:hover {
+            transform: translateY(-15px) scale(1.05);
+            box-shadow: 0 30px 80px rgba(0, 255, 255, 0.6);
+            border-color: #ff00ff;
+        }
+
+        .impact-number {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 4em;
             background: linear-gradient(135deg, #ff00ff, #00ffff);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            animation: rotate-plus 4s linear infinite;
+            font-weight: bold;
+            margin-bottom: 15px;
         }
 
-        @keyframes rotate-plus {
+        .impact-label {
+            font-size: 1.5em;
+            color: #fff;
+            font-weight: 600;
+        }
+
+        /* SLIDE 7: Ação AGORA */
+        .now-grid {
+            display: flex;
+            justify-content: center;
+            gap: 60px;
+            margin-bottom: 80px;
+        }
+
+        .now-card {
+            width: 320px;
+            height: 320px;
+            background: radial-gradient(circle at 30% 30%, rgba(255, 0, 255, 0.3), rgba(0, 255, 255, 0.2));
+            border: 4px solid #00ffff;
+            border-radius: 30px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.6s ease;
+            animation: float-now-card 4s ease-in-out infinite;
+        }
+
+        .now-card:nth-child(1) { animation-delay: 0s; }
+        .now-card:nth-child(2) { animation-delay: 0.7s; }
+        .now-card:nth-child(3) { animation-delay: 1.4s; }
+
+        @keyframes float-now-card {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .now-card:hover {
+            transform: scale(1.15) translateY(-20px);
+            box-shadow: 0 40px 120px rgba(0, 255, 255, 0.8);
+            border-color: #ff00ff;
+        }
+
+        .now-icon {
+            font-size: 7em;
+            margin-bottom: 25px;
+        }
+
+        .now-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 3em;
+            color: #00ffff;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .now-text {
+            font-size: 1.6em;
+            color: #fff;
+            line-height: 1.8;
+            text-align: center;
+        }
+
+        .final-message-box {
+            background: linear-gradient(135deg, rgba(255, 0, 255, 0.2), rgba(0, 255, 255, 0.2));
+            border: 4px solid #00ffff;
+            border-radius: 40px;
+            padding: 60px;
+            text-align: center;
+        }
+
+        .message-icon {
+            font-size: 8em;
+            margin-bottom: 25px;
+            animation: rotate-message-icon 4s linear infinite;
+        }
+
+        @keyframes rotate-message-icon {
             from { transform: rotate(0deg); }
             to { transform: rotate(360deg); }
         }
 
-        .finale-message {
-            font-size: 4em;
+        .message-main {
             font-family: 'Orbitron', sans-serif;
-            line-height: 1.6;
-            background: linear-gradient(135deg, #ff00ff, #00ffff);
+            font-size: 5em;
+            background: linear-gradient(135deg, #ff00ff, #00ffff, #ff00ff);
+            background-size: 200% 200%;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            animation: message-reveal 2s ease;
+            animation: gradient-shift 3s ease infinite;
+            font-weight: bold;
+            margin-bottom: 25px;
         }
 
-        @keyframes message-reveal {
-            from { opacity: 0; transform: scale(0.8); }
-            to { opacity: 1; transform: scale(1); }
+        .message-sub {
+            font-size: 2.5em;
+            color: #fff;
+            line-height: 1.6;
         }
 
-        /* Botão de navegação flutuante */
+        /* Botão de navegação */
         .nav-orb {
             position: fixed;
             bottom: 50px;
@@ -733,58 +640,27 @@
             color: #fff;
             box-shadow: 0 0 40px rgba(0,255,255,0.6);
             transition: all 0.3s ease;
-            animation: float-nav 3s ease-in-out infinite;
-        }
-
-        @keyframes float-nav {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
         }
 
         .nav-orb:hover {
-            transform: scale(1.2) !important;
+            transform: scale(1.2);
             box-shadow: 0 0 80px rgba(0,255,255,1);
         }
 
-        .nav-orb:active {
-            transform: scale(0.95) !important;
-        }
-
         @media (max-width: 1200px) {
-            .interactive-grid, .fusion-display { grid-template-columns: 1fr; }
-            .battle-container { grid-template-columns: 1fr; }
-            .skills-row { flex-direction: column; align-items: center; }
-            .cta-grid { grid-template-columns: 1fr; }
-            .final-cta { grid-template-columns: 1fr; }
-            .timeline-left, .timeline-right { 
-                width: 90%; 
-                margin-left: 10% !important;
-                margin-right: 0 !important;
-            }
-            .timeline-line { left: 5%; }
-            .timeline-dot { left: 5%; }
-            .hologram-title { font-size: 3em; }
-            .section-title-3d { font-size: 2.5em; }
-            .slide { padding: 100px 30px 120px; }
-        }
-
-        @media (max-width: 768px) {
-            .interactive-grid { grid-template-columns: 1fr; gap: 30px; }
-            .carousel-track { padding: 20px 10px; }
-            .job-card { min-width: 280px; }
-            .skill-orb { width: 150px; height: 150px; font-size: 1.2em; }
-            .skill-orb .icon { font-size: 2em; }
-            .cta-visual { width: 200px; height: 200px; }
-            .center-symbol { font-size: 5em; }
+            .comparison-grid { flex-direction: column; }
+            .vs-divider { margin: 30px 0; }
+            .skills-row { flex-direction: column; align-items: center; gap: 30px; }
+            .professions-line { flex-direction: column; }
+            .now-grid { flex-direction: column; align-items: center; }
+            .impact-stats { flex-direction: column; }
+            .cards-grid { flex-direction: column; align-items: center; }
         }
     </style>
 </head>
 <body>
     <!-- Canvas 3D de fundo -->
     <canvas id="canvas3d"></canvas>
-
-    <!-- Overlay de partículas -->
-    <div class="particle-overlay" id="particleOverlay"></div>
 
     <!-- HUD Superior -->
     <div class="hud-top">
@@ -797,10 +673,9 @@
         <!-- Slide 1: Portal -->
         <div class="slide active" data-slide="1">
             <div class="portal-scene">
-                <h1 class="hologram-title" data-text="O FUTURO DO TRABALHO">O FUTURO DO TRABALHO</h1>
+                <h1 class="hologram-title">O FUTURO DO TRABALHO</h1>
                 <p class="subtitle-glitch">Como a IA está redesenhando o amanhã</p>
-                <p class="author-tag">Amanda Ramos de Siqueira | FATEC Mauá | Engenharia de Software</p>
-                <div class="start-pulse">▼</div>
+                <p class="author-tag">Amanda Ramos de Siqueira<br>Informática para Negócios - 3º Semestre | FATEC Mauá</p>
             </div>
         </div>
 
@@ -808,21 +683,21 @@
         <div class="slide" data-slide="2">
             <div style="width: 100%;">
                 <h2 class="section-title-3d">O Presente em Movimento</h2>
-                <div class="interactive-grid">
-                    <div class="tech-card">
+                <div class="cards-grid">
+                    <div class="info-card">
                         <div class="card-icon-animated">🤖</div>
                         <h3>Chatbots Inteligentes</h3>
-                        <p>Magalu, Nubank e bancos utilizam IA para atender milhões diariamente com precisão e rapidez</p>
+                        <p>Magalu, Nubank e bancos utilizam IA para atender milhões diariamente</p>
                     </div>
-                    <div class="tech-card">
+                    <div class="info-card">
                         <div class="card-icon-animated">💻</div>
                         <h3>Código Assistido</h3>
-                        <p>GitHub Copilot e ChatGPT revolucionam a programação, aumentando produtividade em 40%</p>
+                        <p>GitHub Copilot e ChatGPT revolucionam a programação</p>
                     </div>
-                    <div class="tech-card">
+                    <div class="info-card">
                         <div class="card-icon-animated">🎯</div>
                         <h3>Recomendações Precisas</h3>
-                        <p>Netflix, Amazon e Shopee usam algoritmos que preveem seus desejos antes mesmo de você</p>
+                        <p>Netflix, Amazon e Shopee preveem seus desejos</p>
                     </div>
                 </div>
             </div>
@@ -832,8 +707,8 @@
         <div class="slide" data-slide="3">
             <div style="width: 100%;">
                 <h2 class="section-title-3d">O Grande Desafio</h2>
-                <div class="battle-container">
-                    <div class="battle-side battle-left">
+                <div class="comparison-grid">
+                    <div class="comparison-side comparison-left">
                         <h3>⚡ AUTOMAÇÃO</h3>
                         <ul class="battle-list">
                             <li>Atendimento repetitivo</li>
@@ -843,7 +718,7 @@
                         </ul>
                     </div>
                     <div class="vs-divider">VS</div>
-                    <div class="battle-side battle-right">
+                    <div class="comparison-side comparison-right">
                         <h3>💡 HUMANIDADE</h3>
                         <ul class="battle-list">
                             <li>Decisões éticas complexas</li>
@@ -856,155 +731,171 @@
             </div>
         </div>
 
-        <!-- Slide 4: Oportunidades - Profissões -->
+        <!-- Slide 4: Profissões -->
         <div class="slide" data-slide="4">
             <div style="width: 100%;">
                 <h2 class="section-title-3d">Profissões do Futuro</h2>
-                <div class="carousel-3d">
-                    <div class="carousel-track">
-                        <div class="job-card">
-                            <div class="job-icon">🎯</div>
-                            <h4>Engenheiro de Prompts</h4>
-                            <p>Domina a arte de comunicar com IAs para extrair resultados perfeitos</p>
-                        </div>
-                        <div class="job-card">
-                            <div class="job-icon">📊</div>
-                            <h4>Curador de Dados</h4>
-                            <p>Garante qualidade, ética e relevância nas informações que alimentam as IAs</p>
-                        </div>
-                        <div class="job-card">
-                            <div class="job-icon">⚖️</div>
-                            <h4>Especialista em Ética de IA</h4>
-                            <p>Assegura que sistemas sejam justos, transparentes e responsáveis</p>
-                        </div>
-                        <div class="job-card">
-                            <div class="job-icon">🔧</div>
-                            <h4>Técnico de Manutenção IA</h4>
-                            <p>Mantém sistemas operando perfeitamente e alinhados aos objetivos</p>
-                        </div>
+                <div class="professions-line">
+                    <div class="profession-item">
+                        <div class="profession-icon">🎯</div>
+                        <h4>Engenheiro de Prompts</h4>
+                        <p>Domina a comunicação com IAs</p>
+                    </div>
+                    <div class="profession-item">
+                        <div class="profession-icon">📊</div>
+                        <h4>Curador de Dados</h4>
+                        <p>Garante qualidade e ética</p>
+                    </div>
+                    <div class="profession-item">
+                        <div class="profession-icon">⚖️</div>
+                        <h4>Especialista em Ética</h4>
+                        <p>Sistemas justos e transparentes</p>
+                    </div>
+                    <div class="profession-item">
+                        <div class="profession-icon">🔧</div>
+                        <h4>Técnico de IA</h4>
+                        <p>Mantém sistemas operando</p>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- Slide 5: Habilidades Insubstituíveis -->
+        <!-- Slide 5: Habilidades -->
         <div class="slide" data-slide="5">
             <div style="width: 100%;">
                 <h2 class="section-title-3d">Habilidades Insubstituíveis</h2>
-                <div class="skills-showcase" style="margin-top: 20px;">
-                    <h3 style="font-size: 2em; margin-bottom: 60px; color: #00ffff;">O que a IA nunca poderá substituir</h3>
-                    <div class="skills-row">
-                        <div class="skill-orb">
-                            <div class="icon">✨</div>
-                            <div>Criatividade</div>
-                        </div>
-                        <div class="skill-orb">
-                            <div class="icon">❤️</div>
-                            <div>Empatia</div>
-                        </div>
-                        <div class="skill-orb">
-                            <div class="icon">🧠</div>
-                            <div>Pensamento Crítico</div>
-                        </div>
+                <div class="skills-row">
+                    <div class="skill-orb">
+                        <div class="icon">✨</div>
+                        <div>Criatividade</div>
+                        <div class="skill-tooltip">Capacidade de gerar ideias inovadoras e soluções originais que a IA não consegue replicar</div>
+                    </div>
+                    <div class="skill-orb">
+                        <div class="icon">❤️</div>
+                        <div>Empatia</div>
+                        <div class="skill-tooltip">Compreender emoções humanas e criar conexões genuínas que máquinas jamais poderão fazer</div>
+                    </div>
+                    <div class="skill-orb">
+                        <div class="icon">🧠</div>
+                        <div>Pensamento Crítico</div>
+                        <div class="skill-tooltip">Analisar informações complexas, questionar e tomar decisões éticas fundamentadas</div>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- Slide 6: Timeline do Futuro -->
+        <!-- Slide 6: Timeline -->
         <div class="slide" data-slide="6">
-            <div style="width: 100%; max-width: 1600px;">
-                <h2 class="section-title-3d">A Jornada Até 2030</h2>
-                <div class="timeline-container">
-                    <div class="timeline-line"></div>
+            <div style="width: 100%; max-width: 1800px;">
+                <h2 class="section-title-3d">Linha do Tempo: 2020 → 2030</h2>
+                
+                <div class="tech-timeline">
+                    <div class="timeline-track"></div>
                     
-                    <div class="timeline-item" data-year="2025">
-                        <div class="timeline-dot"></div>
-                        <div class="timeline-content timeline-left">
-                            <div class="timeline-year">2025</div>
-                            <h3>IA Generalizada</h3>
-                            <p>ChatGPT e ferramentas de IA se tornam tão comuns quanto o Google. 40% das empresas já usam IA diariamente.</p>
+                    <div class="timeline-node" style="left: 0%;">
+                        <div class="node-dot"></div>
+                        <div class="node-content">
+                            <div class="node-year">2020</div>
+                            <div class="node-title">Início</div>
                         </div>
                     </div>
 
-                    <div class="timeline-item" data-year="2026">
-                        <div class="timeline-dot"></div>
-                        <div class="timeline-content timeline-right">
-                            <div class="timeline-year">2026</div>
-                            <h3>Automação Massiva</h3>
-                            <p>Atendimento, análise de dados e tarefas repetitivas são 80% automatizados. Surgem 2 milhões de novas vagas tech.</p>
+                    <div class="timeline-node" style="left: 20%;">
+                        <div class="node-dot"></div>
+                        <div class="node-content">
+                            <div class="node-year">2022</div>
+                            <div class="node-title">ChatGPT</div>
+                            <div class="node-desc">Revolução começa</div>
                         </div>
                     </div>
 
-                    <div class="timeline-item" data-year="2027">
-                        <div class="timeline-dot"></div>
-                        <div class="timeline-content timeline-left">
-                            <div class="timeline-year">2027</div>
-                            <h3>Educação Personalizada</h3>
-                            <p>IAs tutoras personalizadas para cada estudante. Aprendizado 3x mais eficiente com adaptação em tempo real.</p>
+                    <div class="timeline-node" style="left: 40%;">
+                        <div class="node-dot active"></div>
+                        <div class="node-content">
+                            <div class="node-year">2025</div>
+                            <div class="node-title">AGORA</div>
+                            <div class="node-desc">IA Generalizada</div>
                         </div>
                     </div>
 
-                    <div class="timeline-item" data-year="2028">
-                        <div class="timeline-dot"></div>
-                        <div class="timeline-content timeline-right">
-                            <div class="timeline-year">2028</div>
-                            <h3>Profissões Híbridas</h3>
-                            <p>Todo profissional trabalha com IA como assistente. "Engenheiro de Prompts" é uma das 10 profissões mais requisitadas.</p>
+                    <div class="timeline-node" style="left: 60%;">
+                        <div class="node-dot"></div>
+                        <div class="node-content">
+                            <div class="node-year">2027</div>
+                            <div class="node-title">Educação 3.0</div>
+                            <div class="node-desc">IA em escolas</div>
                         </div>
                     </div>
 
-                    <div class="timeline-item" data-year="2030">
-                        <div class="timeline-dot"></div>
-                        <div class="timeline-content timeline-left">
-                            <div class="timeline-year">2030</div>
-                            <h3>Simbiose Humano-IA</h3>
-                            <p>IA aumenta capacidade humana em 500%. Foco total em criatividade, ética e inovação. Nova era do trabalho.</p>
+                    <div class="timeline-node" style="left: 80%;">
+                        <div class="node-dot"></div>
+                        <div class="node-content">
+                            <div class="node-year">2029</div>
+                            <div class="node-title">Híbrido</div>
+                            <div class="node-desc">100% integrado</div>
                         </div>
+                    </div>
+
+                    <div class="timeline-node" style="left: 100%;">
+                        <div class="node-dot"></div>
+                        <div class="node-content">
+                            <div class="node-year">2030</div>
+                            <div class="node-title">Simbiose</div>
+                            <div class="node-desc">Nova Era</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="impact-stats">
+                    <div class="impact-box">
+                        <div class="impact-number">97M</div>
+                        <div class="impact-label">Novos Empregos</div>
+                    </div>
+                    <div class="impact-box">
+                        <div class="impact-number">$375B</div>
+                        <div class="impact-label">Mercado Global</div>
+                    </div>
+                    <div class="impact-box">
+                        <div class="impact-number">85%</div>
+                        <div class="impact-label">Empresas Usando IA</div>
+                    </div>
+                    <div class="impact-box">
+                        <div class="impact-number">+40%</div>
+                        <div class="impact-label">Produtividade</div>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- Slide 7: Call to Action -->
+        <!-- Slide 7: AGORA -->
         <div class="slide" data-slide="7">
-            <div class="cta-container">
-                <h2 class="section-title-3d" style="margin-bottom: 40px;">Prepare-se AGORA</h2>
+            <div style="width: 100%; max-width: 1600px;">
+                <h2 class="section-title-3d">O Momento É AGORA</h2>
                 
-                <div class="cta-grid">
-                    <div class="action-card">
-                        <div class="action-icon">📚</div>
-                        <h3>Aprenda Continuamente</h3>
-                        <p>Domine ferramentas de IA. Faça cursos online. Experimente ChatGPT, Copilot, MidJourney.</p>
-                        <div class="action-stat">+300% demanda por profissionais com skills em IA</div>
+                <div class="now-grid">
+                    <div class="now-card">
+                        <div class="now-icon">🚀</div>
+                        <div class="now-title">APRENDA</div>
+                        <div class="now-text">Domine IA hoje<br>Seja líder amanhã</div>
                     </div>
 
-                    <div class="action-card">
-                        <div class="action-icon">🎨</div>
-                        <h3>Desenvolva o Humano</h3>
-                        <p>Criatividade, empatia e pensamento crítico são seus maiores diferenciais. Invista nisso!</p>
-                        <div class="action-stat">85% dos empregos de 2030 ainda não existem</div>
+                    <div class="now-card">
+                        <div class="now-icon">💡</div>
+                        <div class="now-title">ADAPTE-SE</div>
+                        <div class="now-text">Mudança constante<br>Evolução necessária</div>
                     </div>
 
-                    <div class="action-card">
-                        <div class="action-icon">🚀</div>
-                        <h3>Seja Adaptável</h3>
-                        <p>O futuro pertence aos que se adaptam rápido. Esteja aberto a mudanças e novas tecnologias.</p>
-                        <div class="action-stat">Profissionais adaptáveis ganham 40% a mais</div>
+                    <div class="now-card">
+                        <div class="now-icon">⚡</div>
+                        <div class="now-title">INOVE</div>
+                        <div class="now-text">Criatividade humana<br>Potência da IA</div>
                     </div>
                 </div>
 
-                <div class="final-cta">
-                    <div class="cta-message">
-                        <h2>O Futuro Não Espera</h2>
-                        <p>A revolução da IA já começou. A pergunta não é "se" você vai fazer parte dela, mas "como".</p>
-                    </div>
-                    <div class="cta-visual">
-                        <div class="pulse-circle"></div>
-                        <div class="pulse-circle delay-1"></div>
-                        <div class="pulse-circle delay-2"></div>
-                        <div class="center-symbol">⚡</div>
-                    </div>
+                <div class="final-message-box">
+                    <div class="message-icon">🌟</div>
+                    <div class="message-main">O FUTURO NÃO ESPERA</div>
+                    <div class="message-sub">Humano + IA = Nova Era do Trabalho</div>
                 </div>
             </div>
         </div>
@@ -1023,7 +914,7 @@
         renderer.setSize(window.innerWidth, window.innerHeight);
         camera.position.z = 50;
 
-        // Criar geometria de fundo holográfica
+        // Criar geometria holográfica
         const geometry = new THREE.TorusGeometry(15, 3, 16, 100);
         const material = new THREE.MeshBasicMaterial({ 
             color: 0x00ffff, 
@@ -1034,7 +925,7 @@
         const torus = new THREE.Mesh(geometry, material);
         scene.add(torus);
 
-        // Adicionar partículas 3D
+        // Partículas 3D
         const particlesGeometry = new THREE.BufferGeometry();
         const particleCount = 3000;
         const positions = new Float32Array(particleCount * 3);
@@ -1101,7 +992,7 @@
                 navButton.innerHTML = '→';
             }
 
-            // Mudar cor do torus baseado no slide
+            // Mudar cor do torus
             const colors = [0x00ffff, 0xff00ff, 0x00ff00, 0xffaa00, 0xff0066, 0x00ffff, 0xff00ff];
             torus.material.color.setHex(colors[currentSlide - 1]);
         }
@@ -1120,9 +1011,6 @@
             document.querySelector(`[data-slide="${slideNum}"]`).classList.add('active');
             updateUI();
         }
-
-        // === TERMINAL IA ===
-        // (Removido pois foi substituído)
 
         // === ATALHOS DE TECLADO ===
         document.addEventListener('keydown', (e) => {
@@ -1149,7 +1037,7 @@
         // === EFEITOS INTERATIVOS ===
         
         // Cards 3D seguem o mouse
-        document.querySelectorAll('.tech-card, .job-card, .action-card').forEach(card => {
+        document.querySelectorAll('.info-card, .profession-item').forEach(card => {
             card.addEventListener('mousemove', (e) => {
                 const rect = card.getBoundingClientRect();
                 const x = e.clientX - rect.left;
@@ -1169,7 +1057,7 @@
             });
         });
 
-        // Orbs de habilidade pulsam ao clicar
+        // Orbs de habilidade
         document.querySelectorAll('.skill-orb').forEach(orb => {
             orb.addEventListener('click', () => {
                 orb.style.animation = 'none';
@@ -1179,64 +1067,39 @@
             });
         });
 
-        // Timeline items brilham ao hover
-        document.querySelectorAll('.timeline-item').forEach(item => {
-            item.addEventListener('mouseenter', function() {
-                const dot = this.querySelector('.timeline-dot');
-                dot.style.transform = 'translateX(-50%) scale(1.5)';
-                dot.style.boxShadow = '0 0 60px #00ffff, 0 0 100px #00ffff';
-            });
-            item.addEventListener('mouseleave', function() {
-                const dot = this.querySelector('.timeline-dot');
-                dot.style.transform = 'translateX(-50%) scale(1)';
-                dot.style.boxShadow = '';
+        // Timeline nodes
+        document.querySelectorAll('.node-dot').forEach(dot => {
+            dot.addEventListener('click', function() {
+                this.style.transform = 'scale(2)';
+                setTimeout(() => {
+                    this.style.transform = '';
+                }, 500);
             });
         });
 
-        // Entidades finais giram ao clicar
-        document.querySelectorAll('.pulse-circle, .center-symbol').forEach(element => {
-            element.addEventListener('click', function() {
-                this.style.transition = 'transform 1s ease';
-                if(this.classList.contains('center-symbol')) {
-                    this.style.transform = 'translate(-50%, -50%) scale(1.5) rotate(720deg)';
-                } else {
-                    this.style.transform = 'translate(-50%, -50%) scale(2)';
-                }
+        // Impact boxes
+        document.querySelectorAll('.impact-box').forEach(box => {
+            box.addEventListener('mouseenter', function() {
+                const number = this.querySelector('.impact-number');
+                number.style.transform = 'scale(1.2) rotate(5deg)';
+            });
+            box.addEventListener('mouseleave', function() {
+                const number = this.querySelector('.impact-number');
+                number.style.transform = '';
+            });
+        });
+
+        // Now cards
+        document.querySelectorAll('.now-card').forEach(card => {
+            card.addEventListener('click', function() {
+                this.style.animation = 'none';
+                this.style.transform = 'scale(1.3) rotate(360deg)';
                 setTimeout(() => {
+                    this.style.animation = '';
                     this.style.transform = '';
                 }, 1000);
             });
         });
-
-        // Carousel scroll suave
-        const carouselTrack = document.querySelector('.carousel-track');
-        if(carouselTrack) {
-            let isDown = false;
-            let startX;
-            let scrollLeft;
-
-            carouselTrack.addEventListener('mousedown', (e) => {
-                isDown = true;
-                startX = e.pageX - carouselTrack.offsetLeft;
-                scrollLeft = carouselTrack.scrollLeft;
-            });
-
-            carouselTrack.addEventListener('mouseleave', () => {
-                isDown = false;
-            });
-
-            carouselTrack.addEventListener('mouseup', () => {
-                isDown = false;
-            });
-
-            carouselTrack.addEventListener('mousemove', (e) => {
-                if(!isDown) return;
-                e.preventDefault();
-                const x = e.pageX - carouselTrack.offsetLeft;
-                const walk = (x - startX) * 2;
-                carouselTrack.scrollLeft = scrollLeft - walk;
-            });
-        }
 
         // Inicializar
         updateUI();
