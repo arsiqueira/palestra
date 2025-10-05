@@ -1,0 +1,1245 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>O Futuro do Trabalho | IA</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Rajdhani', sans-serif;
+            background: #000;
+            color: #fff;
+            overflow: hidden;
+            height: 100vh;
+            margin: 0;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Orbitron', sans-serif;
+        }
+
+        /* Canvas 3D de fundo */
+        #canvas3d {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+
+        /* Overlay de partículas */
+        .particle-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 2;
+        }
+
+        /* Container principal */
+        .main-container {
+            position: relative;
+            z-index: 10;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* HUD Superior */
+        .hud-top {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 100;
+            background: linear-gradient(180deg, rgba(0,0,0,0.8) 0%, transparent 100%);
+        }
+
+        .progress-indicator {
+            display: flex;
+            gap: 15px;
+        }
+
+        .progress-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.2);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .progress-dot.active {
+            background: #00ffff;
+            box-shadow: 0 0 20px #00ffff;
+            transform: scale(1.5);
+        }
+
+        .progress-dot::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 30px;
+            height: 30px;
+            border: 2px solid #00ffff;
+            border-radius: 50%;
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
+
+        .progress-dot.active::after {
+            opacity: 1;
+            animation: pulse-ring 2s infinite;
+        }
+
+        @keyframes pulse-ring {
+            0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.5; }
+            50% { transform: translate(-50%, -50%) scale(1.5); opacity: 0; }
+        }
+
+        .slide-info {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1em;
+            color: #00ffff;
+            background: rgba(0,0,0,0.5);
+            padding: 10px 20px;
+            border-radius: 20px;
+            border: 1px solid rgba(0,255,255,0.3);
+        }
+
+        /* Slides */
+        .slide {
+            display: none;
+            height: 100vh;
+            align-items: center;
+            justify-content: center;
+            padding: 100px 60px;
+            opacity: 0;
+        }
+
+        .slide.active {
+            display: flex;
+            animation: slideEnter 1s ease forwards;
+        }
+
+        @keyframes slideEnter {
+            from {
+                opacity: 0;
+                transform: translateY(50px) scale(0.95);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        /* SLIDE 1: Portal Holográfico */
+        .portal-scene {
+            text-align: center;
+            position: relative;
+        }
+
+        .hologram-title {
+            font-size: 5em;
+            background: linear-gradient(135deg, #ff00ff, #00ffff, #ff00ff);
+            background-size: 200% 200%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: gradient-shift 3s ease infinite;
+            text-shadow: 0 0 80px rgba(0,255,255,0.5);
+            margin-bottom: 30px;
+            position: relative;
+        }
+
+        .hologram-title::before {
+            content: attr(data-text);
+            position: absolute;
+            left: 0;
+            top: 2px;
+            z-index: -1;
+            background: linear-gradient(135deg, #ff00ff, #00ffff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            opacity: 0.3;
+        }
+
+        @keyframes gradient-shift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        .subtitle-glitch {
+            font-size: 2em;
+            color: #00ffff;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            margin: 20px 0;
+            animation: glitch 3s infinite;
+        }
+
+        @keyframes glitch {
+            0%, 90%, 100% { transform: translate(0); }
+            92% { transform: translate(-2px, 2px); }
+            94% { transform: translate(2px, -2px); }
+            96% { transform: translate(-2px, -2px); }
+        }
+
+        .author-tag {
+            font-size: 1.3em;
+            color: #ff00ff;
+            margin-top: 40px;
+            opacity: 0.8;
+        }
+
+        .start-pulse {
+            margin-top: 60px;
+            font-size: 3em;
+            animation: pulse-icon 1.5s infinite;
+        }
+
+        @keyframes pulse-icon {
+            0%, 100% { transform: scale(1); opacity: 0.6; }
+            50% { transform: scale(1.2); opacity: 1; }
+        }
+
+        /* SLIDE 2: Cards Interativos 3D */
+        .interactive-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+            max-width: 1400px;
+            perspective: 1000px;
+        }
+
+        .tech-card {
+            background: rgba(10, 10, 30, 0.6);
+            border: 2px solid rgba(0,255,255,0.3);
+            border-radius: 20px;
+            padding: 50px 30px;
+            text-align: center;
+            transition: all 0.4s ease;
+            transform-style: preserve-3d;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .tech-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0,255,255,0.3), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .tech-card:hover::before {
+            left: 100%;
+        }
+
+        .tech-card:hover {
+            transform: translateY(-20px) rotateY(5deg);
+            border-color: #00ffff;
+            box-shadow: 0 30px 80px rgba(0,255,255,0.4);
+        }
+
+        .card-icon-animated {
+            font-size: 5em;
+            margin-bottom: 30px;
+            animation: float-icon 3s ease-in-out infinite;
+            filter: drop-shadow(0 0 30px currentColor);
+        }
+
+        @keyframes float-icon {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+        }
+
+        .tech-card:nth-child(1) .card-icon-animated { animation-delay: 0s; }
+        .tech-card:nth-child(2) .card-icon-animated { animation-delay: 0.3s; }
+        .tech-card:nth-child(3) .card-icon-animated { animation-delay: 0.6s; }
+
+        .tech-card h3 {
+            font-size: 2em;
+            color: #00ffff;
+            margin-bottom: 20px;
+        }
+
+        .tech-card p {
+            font-size: 1.2em;
+            line-height: 1.8;
+            color: #ccc;
+        }
+
+        .section-title-3d {
+            font-size: 4em;
+            text-align: center;
+            margin-bottom: 80px;
+            background: linear-gradient(135deg, #ff00ff, #00ffff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: title-entrance 1s ease;
+        }
+
+        @keyframes title-entrance {
+            from { transform: translateY(-50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        /* SLIDE 3: Comparação Visual Interativa */
+        .battle-container {
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            gap: 60px;
+            max-width: 1600px;
+            align-items: center;
+        }
+
+        .battle-side {
+            background: rgba(10, 10, 30, 0.4);
+            padding: 60px 40px;
+            border-radius: 30px;
+            position: relative;
+            transition: all 0.5s ease;
+        }
+
+        .battle-left {
+            border: 3px solid #ff00ff;
+            box-shadow: 0 0 40px rgba(255,0,255,0.3);
+        }
+
+        .battle-left:hover {
+            box-shadow: 0 0 80px rgba(255,0,255,0.6);
+            transform: translateX(-10px) scale(1.02);
+        }
+
+        .battle-right {
+            border: 3px solid #00ffff;
+            box-shadow: 0 0 40px rgba(0,255,255,0.3);
+        }
+
+        .battle-right:hover {
+            box-shadow: 0 0 80px rgba(0,255,255,0.6);
+            transform: translateX(10px) scale(1.02);
+        }
+
+        .vs-divider {
+            font-size: 6em;
+            font-family: 'Orbitron', sans-serif;
+            background: linear-gradient(135deg, #ff00ff, #00ffff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: rotate-vs 4s linear infinite;
+        }
+
+        @keyframes rotate-vs {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .battle-side h3 {
+            font-size: 2.5em;
+            margin-bottom: 40px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .battle-left h3 { color: #ff00ff; }
+        .battle-right h3 { color: #00ffff; }
+
+        .battle-list {
+            list-style: none;
+        }
+
+        .battle-list li {
+            font-size: 1.4em;
+            margin: 25px 0;
+            padding-left: 40px;
+            position: relative;
+            opacity: 0;
+            animation: fadeInItem 0.5s ease forwards;
+        }
+
+        .battle-list li:nth-child(1) { animation-delay: 0.2s; }
+        .battle-list li:nth-child(2) { animation-delay: 0.4s; }
+        .battle-list li:nth-child(3) { animation-delay: 0.6s; }
+        .battle-list li:nth-child(4) { animation-delay: 0.8s; }
+
+        @keyframes fadeInItem {
+            from { opacity: 0; transform: translateX(-20px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        .battle-list li::before {
+            content: '◆';
+            position: absolute;
+            left: 0;
+            font-size: 1.5em;
+            animation: pulse-diamond 2s infinite;
+        }
+
+        @keyframes pulse-diamond {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.3); }
+        }
+
+        .battle-left li::before { color: #ff00ff; }
+        .battle-right li::before { color: #00ffff; }
+
+        /* SLIDE 4: Carrossel Futurista */
+        .carousel-3d {
+            max-width: 1600px;
+            width: 100%;
+            position: relative;
+            perspective: 2000px;
+        }
+
+        .carousel-track {
+            display: flex;
+            gap: 40px;
+            padding: 40px 20px;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            scrollbar-width: thin;
+            scrollbar-color: #ff00ff rgba(255, 255, 255, 0.1);
+        }
+
+        .carousel-track::-webkit-scrollbar {
+            height: 10px;
+        }
+
+        .carousel-track::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+        }
+
+        .carousel-track::-webkit-scrollbar-thumb {
+            background: linear-gradient(90deg, #ff00ff, #00ffff);
+            border-radius: 10px;
+        }
+
+        .carousel-track::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(90deg, #ff00ff, #00ffff);
+            box-shadow: 0 0 10px rgba(255, 0, 255, 0.5);
+        }
+
+        .job-card {
+            min-width: 350px;
+            background: linear-gradient(135deg, rgba(255,0,255,0.1), rgba(0,255,255,0.1));
+            border: 2px solid #ff00ff;
+            border-radius: 25px;
+            padding: 50px 40px;
+            scroll-snap-align: center;
+            transform-style: preserve-3d;
+            transition: all 0.5s ease;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .job-card::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 25px;
+            background: linear-gradient(135deg, rgba(255,0,255,0.3), rgba(0,255,255,0.3));
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        .job-card:hover::after {
+            opacity: 1;
+        }
+
+        .job-card:hover {
+            transform: translateY(-15px) rotateX(5deg);
+            box-shadow: 0 40px 100px rgba(255,0,255,0.5);
+            border-color: #00ffff;
+        }
+
+        .job-icon {
+            font-size: 4em;
+            margin-bottom: 20px;
+        }
+
+        .job-card h4 {
+            font-size: 2em;
+            color: #00ffff;
+            margin-bottom: 20px;
+        }
+
+        .job-card p {
+            font-size: 1.2em;
+            line-height: 1.8;
+            color: #ccc;
+        }
+
+        .skills-showcase {
+            margin-top: 80px;
+            margin-bottom: 40px;
+            text-align: center;
+        }
+
+        .skills-showcase h3 {
+            font-size: 2.5em;
+            color: #00ffff;
+            margin-bottom: 40px;
+        }
+
+        .skills-row {
+            display: flex;
+            justify-content: center;
+            gap: 50px;
+        }
+
+        .skill-orb {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            background: radial-gradient(circle at 30% 30%, rgba(255,0,255,0.4), rgba(0,255,255,0.2));
+            border: 3px solid #00ffff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.5s ease;
+            animation: float-orb 4s ease-in-out infinite;
+        }
+
+        .skill-orb:nth-child(1) { animation-delay: 0s; }
+        .skill-orb:nth-child(2) { animation-delay: 0.7s; }
+        .skill-orb:nth-child(3) { animation-delay: 1.4s; }
+
+        @keyframes float-orb {
+            0%, 100% { transform: translateY(0) scale(1); }
+            50% { transform: translateY(-20px) scale(1.05); }
+        }
+
+        .skill-orb:hover {
+            box-shadow: 0 0 80px rgba(0,255,255,0.8);
+            transform: scale(1.2) !important;
+        }
+
+        .skill-orb .icon {
+            font-size: 3em;
+            margin-bottom: 10px;
+        }
+
+        /* SLIDE 5: Terminal Interativo */
+        .terminal-interface {
+            max-width: 1000px;
+            width: 100%;
+        }
+
+        .terminal-window {
+            background: rgba(0,0,0,0.9);
+            border: 2px solid #00ffff;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 0 100px rgba(0,255,255,0.5);
+        }
+
+        .terminal-header {
+            background: linear-gradient(135deg, #ff00ff, #00ffff);
+            padding: 15px 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .terminal-btn {
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+        }
+
+        .btn-close { background: #ff5555; }
+        .btn-minimize { background: #ffaa00; }
+        .btn-maximize { background: #00ff00; }
+
+        .terminal-body {
+            padding: 40px;
+            min-height: 400px;
+        }
+
+        .terminal-line {
+            font-family: 'Courier New', monospace;
+            font-size: 1.1em;
+            margin: 10px 0;
+            color: #00ff00;
+        }
+
+        .terminal-prompt {
+            color: #00ffff;
+        }
+
+        .terminal-input-area {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-top: 30px;
+        }
+
+        .terminal-input {
+            flex: 1;
+            background: rgba(0,255,255,0.1);
+            border: 2px solid #00ffff;
+            border-radius: 10px;
+            padding: 20px;
+            font-size: 1.3em;
+            color: #fff;
+            font-family: 'Courier New', monospace;
+        }
+
+        .terminal-button {
+            padding: 20px 40px;
+            font-size: 1.2em;
+            font-family: 'Orbitron', sans-serif;
+            background: linear-gradient(135deg, #ff00ff, #00ffff);
+            border: none;
+            border-radius: 10px;
+            color: #fff;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+        }
+
+        .terminal-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 40px rgba(0,255,255,0.8);
+        }
+
+        .typing-cursor {
+            display: inline-block;
+            width: 10px;
+            height: 20px;
+            background: #00ff00;
+            animation: blink 1s infinite;
+            margin-left: 5px;
+        }
+
+        @keyframes blink {
+            0%, 50% { opacity: 1; }
+            51%, 100% { opacity: 0; }
+        }
+
+        /* SLIDE 6: Finale Épico */
+        .finale-scene {
+            text-align: center;
+            max-width: 1400px;
+        }
+
+        .fusion-display {
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            gap: 80px;
+            align-items: center;
+            margin-bottom: 80px;
+        }
+
+        .entity-icon {
+            font-size: 15em;
+            animation: pulse-entity 3s ease-in-out infinite;
+            cursor: pointer;
+        }
+
+        .entity-icon:hover {
+            animation: none;
+            transform: scale(1.2) rotate(10deg);
+        }
+
+        .brain-entity {
+            color: #ff00ff;
+            filter: drop-shadow(0 0 80px #ff00ff);
+        }
+
+        .ai-entity {
+            color: #00ffff;
+            filter: drop-shadow(0 0 80px #00ffff);
+        }
+
+        @keyframes pulse-entity {
+            0%, 100% { transform: scale(1); filter: drop-shadow(0 0 50px currentColor); }
+            50% { transform: scale(1.1); filter: drop-shadow(0 0 100px currentColor); }
+        }
+
+        .plus-symbol {
+            font-size: 8em;
+            font-family: 'Orbitron', sans-serif;
+            background: linear-gradient(135deg, #ff00ff, #00ffff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: rotate-plus 4s linear infinite;
+        }
+
+        @keyframes rotate-plus {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .finale-message {
+            font-size: 4em;
+            font-family: 'Orbitron', sans-serif;
+            line-height: 1.6;
+            background: linear-gradient(135deg, #ff00ff, #00ffff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: message-reveal 2s ease;
+        }
+
+        @keyframes message-reveal {
+            from { opacity: 0; transform: scale(0.8); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        /* Botão de navegação flutuante */
+        .nav-orb {
+            position: fixed;
+            bottom: 50px;
+            right: 50px;
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #ff00ff, #00ffff);
+            border: none;
+            cursor: pointer;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2em;
+            color: #fff;
+            box-shadow: 0 0 40px rgba(0,255,255,0.6);
+            transition: all 0.3s ease;
+            animation: float-nav 3s ease-in-out infinite;
+        }
+
+        @keyframes float-nav {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .nav-orb:hover {
+            transform: scale(1.2) !important;
+            box-shadow: 0 0 80px rgba(0,255,255,1);
+        }
+
+        .nav-orb:active {
+            transform: scale(0.95) !important;
+        }
+
+        @media (max-width: 1200px) {
+            .interactive-grid, .fusion-display { grid-template-columns: 1fr; }
+            .battle-container { grid-template-columns: 1fr; }
+            .skills-row { flex-direction: column; align-items: center; }
+            .cta-grid { grid-template-columns: 1fr; }
+            .final-cta { grid-template-columns: 1fr; }
+            .timeline-left, .timeline-right { 
+                width: 90%; 
+                margin-left: 10% !important;
+                margin-right: 0 !important;
+            }
+            .timeline-line { left: 5%; }
+            .timeline-dot { left: 5%; }
+            .hologram-title { font-size: 3em; }
+            .section-title-3d { font-size: 2.5em; }
+            .slide { padding: 100px 30px 120px; }
+        }
+
+        @media (max-width: 768px) {
+            .interactive-grid { grid-template-columns: 1fr; gap: 30px; }
+            .carousel-track { padding: 20px 10px; }
+            .job-card { min-width: 280px; }
+            .skill-orb { width: 150px; height: 150px; font-size: 1.2em; }
+            .skill-orb .icon { font-size: 2em; }
+            .cta-visual { width: 200px; height: 200px; }
+            .center-symbol { font-size: 5em; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Canvas 3D de fundo -->
+    <canvas id="canvas3d"></canvas>
+
+    <!-- Overlay de partículas -->
+    <div class="particle-overlay" id="particleOverlay"></div>
+
+    <!-- HUD Superior -->
+    <div class="hud-top">
+        <div class="progress-indicator" id="progressIndicator"></div>
+        <div class="slide-info"><span id="slideNumber">01</span> / 07</div>
+    </div>
+
+    <!-- Container Principal -->
+    <div class="main-container">
+        <!-- Slide 1: Portal -->
+        <div class="slide active" data-slide="1">
+            <div class="portal-scene">
+                <h1 class="hologram-title" data-text="O FUTURO DO TRABALHO">O FUTURO DO TRABALHO</h1>
+                <p class="subtitle-glitch">Como a IA está redesenhando o amanhã</p>
+                <p class="author-tag">Amanda Ramos de Siqueira | FATEC Mauá | Engenharia de Software</p>
+                <div class="start-pulse">▼</div>
+            </div>
+        </div>
+
+        <!-- Slide 2: Presente -->
+        <div class="slide" data-slide="2">
+            <div style="width: 100%;">
+                <h2 class="section-title-3d">O Presente em Movimento</h2>
+                <div class="interactive-grid">
+                    <div class="tech-card">
+                        <div class="card-icon-animated">🤖</div>
+                        <h3>Chatbots Inteligentes</h3>
+                        <p>Magalu, Nubank e bancos utilizam IA para atender milhões diariamente com precisão e rapidez</p>
+                    </div>
+                    <div class="tech-card">
+                        <div class="card-icon-animated">💻</div>
+                        <h3>Código Assistido</h3>
+                        <p>GitHub Copilot e ChatGPT revolucionam a programação, aumentando produtividade em 40%</p>
+                    </div>
+                    <div class="tech-card">
+                        <div class="card-icon-animated">🎯</div>
+                        <h3>Recomendações Precisas</h3>
+                        <p>Netflix, Amazon e Shopee usam algoritmos que preveem seus desejos antes mesmo de você</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 3: Desafios -->
+        <div class="slide" data-slide="3">
+            <div style="width: 100%;">
+                <h2 class="section-title-3d">O Grande Desafio</h2>
+                <div class="battle-container">
+                    <div class="battle-side battle-left">
+                        <h3>⚡ AUTOMAÇÃO</h3>
+                        <ul class="battle-list">
+                            <li>Atendimento repetitivo</li>
+                            <li>Análise de dados massivos</li>
+                            <li>Processos administrativos</li>
+                            <li>Tarefas operacionais</li>
+                        </ul>
+                    </div>
+                    <div class="vs-divider">VS</div>
+                    <div class="battle-side battle-right">
+                        <h3>💡 HUMANIDADE</h3>
+                        <ul class="battle-list">
+                            <li>Decisões éticas complexas</li>
+                            <li>Criatividade e inovação</li>
+                            <li>Empatia genuína</li>
+                            <li>Pensamento estratégico</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 4: Oportunidades - Profissões -->
+        <div class="slide" data-slide="4">
+            <div style="width: 100%;">
+                <h2 class="section-title-3d">Profissões do Futuro</h2>
+                <div class="carousel-3d">
+                    <div class="carousel-track">
+                        <div class="job-card">
+                            <div class="job-icon">🎯</div>
+                            <h4>Engenheiro de Prompts</h4>
+                            <p>Domina a arte de comunicar com IAs para extrair resultados perfeitos</p>
+                        </div>
+                        <div class="job-card">
+                            <div class="job-icon">📊</div>
+                            <h4>Curador de Dados</h4>
+                            <p>Garante qualidade, ética e relevância nas informações que alimentam as IAs</p>
+                        </div>
+                        <div class="job-card">
+                            <div class="job-icon">⚖️</div>
+                            <h4>Especialista em Ética de IA</h4>
+                            <p>Assegura que sistemas sejam justos, transparentes e responsáveis</p>
+                        </div>
+                        <div class="job-card">
+                            <div class="job-icon">🔧</div>
+                            <h4>Técnico de Manutenção IA</h4>
+                            <p>Mantém sistemas operando perfeitamente e alinhados aos objetivos</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 5: Habilidades Insubstituíveis -->
+        <div class="slide" data-slide="5">
+            <div style="width: 100%;">
+                <h2 class="section-title-3d">Habilidades Insubstituíveis</h2>
+                <div class="skills-showcase" style="margin-top: 20px;">
+                    <h3 style="font-size: 2em; margin-bottom: 60px; color: #00ffff;">O que a IA nunca poderá substituir</h3>
+                    <div class="skills-row">
+                        <div class="skill-orb">
+                            <div class="icon">✨</div>
+                            <div>Criatividade</div>
+                        </div>
+                        <div class="skill-orb">
+                            <div class="icon">❤️</div>
+                            <div>Empatia</div>
+                        </div>
+                        <div class="skill-orb">
+                            <div class="icon">🧠</div>
+                            <div>Pensamento Crítico</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 6: Timeline do Futuro -->
+        <div class="slide" data-slide="6">
+            <div style="width: 100%; max-width: 1600px;">
+                <h2 class="section-title-3d">A Jornada Até 2030</h2>
+                <div class="timeline-container">
+                    <div class="timeline-line"></div>
+                    
+                    <div class="timeline-item" data-year="2025">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content timeline-left">
+                            <div class="timeline-year">2025</div>
+                            <h3>IA Generalizada</h3>
+                            <p>ChatGPT e ferramentas de IA se tornam tão comuns quanto o Google. 40% das empresas já usam IA diariamente.</p>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item" data-year="2026">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content timeline-right">
+                            <div class="timeline-year">2026</div>
+                            <h3>Automação Massiva</h3>
+                            <p>Atendimento, análise de dados e tarefas repetitivas são 80% automatizados. Surgem 2 milhões de novas vagas tech.</p>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item" data-year="2027">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content timeline-left">
+                            <div class="timeline-year">2027</div>
+                            <h3>Educação Personalizada</h3>
+                            <p>IAs tutoras personalizadas para cada estudante. Aprendizado 3x mais eficiente com adaptação em tempo real.</p>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item" data-year="2028">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content timeline-right">
+                            <div class="timeline-year">2028</div>
+                            <h3>Profissões Híbridas</h3>
+                            <p>Todo profissional trabalha com IA como assistente. "Engenheiro de Prompts" é uma das 10 profissões mais requisitadas.</p>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item" data-year="2030">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content timeline-left">
+                            <div class="timeline-year">2030</div>
+                            <h3>Simbiose Humano-IA</h3>
+                            <p>IA aumenta capacidade humana em 500%. Foco total em criatividade, ética e inovação. Nova era do trabalho.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 7: Call to Action -->
+        <div class="slide" data-slide="7">
+            <div class="cta-container">
+                <h2 class="section-title-3d" style="margin-bottom: 40px;">Prepare-se AGORA</h2>
+                
+                <div class="cta-grid">
+                    <div class="action-card">
+                        <div class="action-icon">📚</div>
+                        <h3>Aprenda Continuamente</h3>
+                        <p>Domine ferramentas de IA. Faça cursos online. Experimente ChatGPT, Copilot, MidJourney.</p>
+                        <div class="action-stat">+300% demanda por profissionais com skills em IA</div>
+                    </div>
+
+                    <div class="action-card">
+                        <div class="action-icon">🎨</div>
+                        <h3>Desenvolva o Humano</h3>
+                        <p>Criatividade, empatia e pensamento crítico são seus maiores diferenciais. Invista nisso!</p>
+                        <div class="action-stat">85% dos empregos de 2030 ainda não existem</div>
+                    </div>
+
+                    <div class="action-card">
+                        <div class="action-icon">🚀</div>
+                        <h3>Seja Adaptável</h3>
+                        <p>O futuro pertence aos que se adaptam rápido. Esteja aberto a mudanças e novas tecnologias.</p>
+                        <div class="action-stat">Profissionais adaptáveis ganham 40% a mais</div>
+                    </div>
+                </div>
+
+                <div class="final-cta">
+                    <div class="cta-message">
+                        <h2>O Futuro Não Espera</h2>
+                        <p>A revolução da IA já começou. A pergunta não é "se" você vai fazer parte dela, mas "como".</p>
+                    </div>
+                    <div class="cta-visual">
+                        <div class="pulse-circle"></div>
+                        <div class="pulse-circle delay-1"></div>
+                        <div class="pulse-circle delay-2"></div>
+                        <div class="center-symbol">⚡</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Botão de navegação -->
+    <button class="nav-orb" id="navButton" onclick="nextSlide()">→</button>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script>
+        // === CONFIGURAÇÃO 3D ===
+        const canvas = document.getElementById('canvas3d');
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+        const renderer = new THREE.WebGLRenderer({ canvas, alpha: true });
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        camera.position.z = 50;
+
+        // Criar geometria de fundo holográfica
+        const geometry = new THREE.TorusGeometry(15, 3, 16, 100);
+        const material = new THREE.MeshBasicMaterial({ 
+            color: 0x00ffff, 
+            wireframe: true,
+            transparent: true,
+            opacity: 0.15
+        });
+        const torus = new THREE.Mesh(geometry, material);
+        scene.add(torus);
+
+        // Adicionar partículas 3D
+        const particlesGeometry = new THREE.BufferGeometry();
+        const particleCount = 3000;
+        const positions = new Float32Array(particleCount * 3);
+
+        for(let i = 0; i < particleCount * 3; i++) {
+            positions[i] = (Math.random() - 0.5) * 100;
+        }
+
+        particlesGeometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+        const particlesMaterial = new THREE.PointsMaterial({
+            color: 0x00ffff,
+            size: 0.1,
+            transparent: true,
+            opacity: 0.6
+        });
+
+        const particlesMesh = new THREE.Points(particlesGeometry, particlesMaterial);
+        scene.add(particlesMesh);
+
+        // Animação 3D
+        function animate3D() {
+            requestAnimationFrame(animate3D);
+            torus.rotation.x += 0.005;
+            torus.rotation.y += 0.005;
+            particlesMesh.rotation.y += 0.001;
+            renderer.render(scene, camera);
+        }
+        animate3D();
+
+        // Responsividade
+        window.addEventListener('resize', () => {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        });
+
+        // === SISTEMA DE SLIDES ===
+        let currentSlide = 1;
+        const totalSlides = 7;
+
+        // Criar indicadores de progresso
+        const progressIndicator = document.getElementById('progressIndicator');
+        for(let i = 1; i <= totalSlides; i++) {
+            const dot = document.createElement('div');
+            dot.className = 'progress-dot';
+            if(i === 1) dot.classList.add('active');
+            dot.onclick = () => goToSlide(i);
+            progressIndicator.appendChild(dot);
+        }
+
+        function updateUI() {
+            document.getElementById('slideNumber').textContent = String(currentSlide).padStart(2, '0');
+            
+            // Atualizar dots
+            document.querySelectorAll('.progress-dot').forEach((dot, index) => {
+                dot.classList.toggle('active', index + 1 === currentSlide);
+            });
+
+            // Atualizar botão
+            const navButton = document.getElementById('navButton');
+            if(currentSlide === totalSlides) {
+                navButton.innerHTML = '🔄';
+            } else {
+                navButton.innerHTML = '→';
+            }
+
+            // Mudar cor do torus baseado no slide
+            const colors = [0x00ffff, 0xff00ff, 0x00ff00, 0xffaa00, 0xff0066, 0x00ffff, 0xff00ff];
+            torus.material.color.setHex(colors[currentSlide - 1]);
+        }
+
+        function nextSlide() {
+            if(currentSlide < totalSlides) {
+                goToSlide(currentSlide + 1);
+            } else {
+                goToSlide(1);
+            }
+        }
+
+        function goToSlide(slideNum) {
+            document.querySelector('.slide.active').classList.remove('active');
+            currentSlide = slideNum;
+            document.querySelector(`[data-slide="${slideNum}"]`).classList.add('active');
+            updateUI();
+        }
+
+        // === TERMINAL IA ===
+        // (Removido pois foi substituído)
+
+        // === ATALHOS DE TECLADO ===
+        document.addEventListener('keydown', (e) => {
+            if(e.target.tagName === 'INPUT') return;
+
+            if(e.key === 'ArrowRight' || e.key === ' ' || e.code === 'Space') {
+                e.preventDefault();
+                nextSlide();
+            }
+            if(e.key === 'ArrowLeft' && currentSlide > 1) {
+                e.preventDefault();
+                goToSlide(currentSlide - 1);
+            }
+            if(e.key === 'Home') {
+                e.preventDefault();
+                goToSlide(1);
+            }
+            if(e.key === 'End') {
+                e.preventDefault();
+                goToSlide(totalSlides);
+            }
+        });
+
+        // === EFEITOS INTERATIVOS ===
+        
+        // Cards 3D seguem o mouse
+        document.querySelectorAll('.tech-card, .job-card, .action-card').forEach(card => {
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+                
+                const rotateX = (y - centerY) / 10;
+                const rotateY = (centerX - x) / 10;
+                
+                card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-20px)`;
+            });
+            
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = '';
+            });
+        });
+
+        // Orbs de habilidade pulsam ao clicar
+        document.querySelectorAll('.skill-orb').forEach(orb => {
+            orb.addEventListener('click', () => {
+                orb.style.animation = 'none';
+                setTimeout(() => {
+                    orb.style.animation = '';
+                }, 10);
+            });
+        });
+
+        // Timeline items brilham ao hover
+        document.querySelectorAll('.timeline-item').forEach(item => {
+            item.addEventListener('mouseenter', function() {
+                const dot = this.querySelector('.timeline-dot');
+                dot.style.transform = 'translateX(-50%) scale(1.5)';
+                dot.style.boxShadow = '0 0 60px #00ffff, 0 0 100px #00ffff';
+            });
+            item.addEventListener('mouseleave', function() {
+                const dot = this.querySelector('.timeline-dot');
+                dot.style.transform = 'translateX(-50%) scale(1)';
+                dot.style.boxShadow = '';
+            });
+        });
+
+        // Entidades finais giram ao clicar
+        document.querySelectorAll('.pulse-circle, .center-symbol').forEach(element => {
+            element.addEventListener('click', function() {
+                this.style.transition = 'transform 1s ease';
+                if(this.classList.contains('center-symbol')) {
+                    this.style.transform = 'translate(-50%, -50%) scale(1.5) rotate(720deg)';
+                } else {
+                    this.style.transform = 'translate(-50%, -50%) scale(2)';
+                }
+                setTimeout(() => {
+                    this.style.transform = '';
+                }, 1000);
+            });
+        });
+
+        // Carousel scroll suave
+        const carouselTrack = document.querySelector('.carousel-track');
+        if(carouselTrack) {
+            let isDown = false;
+            let startX;
+            let scrollLeft;
+
+            carouselTrack.addEventListener('mousedown', (e) => {
+                isDown = true;
+                startX = e.pageX - carouselTrack.offsetLeft;
+                scrollLeft = carouselTrack.scrollLeft;
+            });
+
+            carouselTrack.addEventListener('mouseleave', () => {
+                isDown = false;
+            });
+
+            carouselTrack.addEventListener('mouseup', () => {
+                isDown = false;
+            });
+
+            carouselTrack.addEventListener('mousemove', (e) => {
+                if(!isDown) return;
+                e.preventDefault();
+                const x = e.pageX - carouselTrack.offsetLeft;
+                const walk = (x - startX) * 2;
+                carouselTrack.scrollLeft = scrollLeft - walk;
+            });
+        }
+
+        // Inicializar
+        updateUI();
+    </script>
+</body>
+</html>
