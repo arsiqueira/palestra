@@ -305,23 +305,25 @@
 
         /* SLIDE 4: Profissões em Linha */
         .professions-line {
-            display: flex;
-            gap: 25px;
-            max-width: 100%;
-            width: 100%;
-        }
+    display: flex;
+    gap: 25px;
+    width: 100%;
+    flex-wrap: nowrap;               /* impede quebra de linha */
+    justify-content: space-between;  /* distribui os 4 cards igualmente */
+}
 
-        .profession-item {
-            flex: 1;
-            min-width: 0;
-            background: linear-gradient(135deg, rgba(255, 0, 255, 0.1), rgba(0, 255, 255, 0.1));
-            border: 2px solid #ff00ff;
-            border-radius: 20px;
-            padding: 30px 20px;
-            text-align: center;
-            transition: all 0.4s ease;
-            cursor: pointer;
-        }
+.profession-item {
+    flex: 0 0 23%;                   /* cada card ocupa ~1/4 da tela */
+    min-width: 200px;                /* garante um mínimo em telas menores */
+    background: linear-gradient(135deg, rgba(255, 0, 255, 0.1), rgba(0, 255, 255, 0.1));
+    border: 2px solid #ff00ff;
+    border-radius: 20px;
+    padding: 30px 20px;
+    text-align: center;
+    transition: all 0.4s ease;
+    cursor: pointer;
+}
+
 
         .profession-item:hover {
             transform: translateY(-15px);
@@ -421,26 +423,36 @@
             margin-bottom: 60px;
         }*/
 
-        .tech-timeline {
+       .tech-timeline {
     position: relative;
     height: 160px;
     margin: 0 auto 60px;
     max-width: 1200px; /* Limita a linha do tempo à tela */
+    width: 100%;        /* Para se ajustar à tela menor que 1200px */
 }
 
+.timeline-track {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    height: 8px;
+    background: linear-gradient(90deg, #ff00ff, #00ffff, #ff00ff);
+    background-size: 200% 100%;
+    animation: flow-track 3s linear infinite;
+    box-shadow: 0 0 30px rgba(0, 255, 255, 0.8);
+    border-radius: 10px;
+}
 
-        .timeline-track {
-            position: absolute;
-            top: 50%;
-            left: 0;
-            right: 0;
-            height: 8px;
-            background: linear-gradient(90deg, #ff00ff, #00ffff, #ff00ff);
-            background-size: 200% 100%;
-            animation: flow-track 3s linear infinite;
-            box-shadow: 0 0 30px rgba(0, 255, 255, 0.8);
-            border-radius: 10px;
-        }
+/* Nodes da timeline */
+.timeline-node {
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: auto;
+    max-width: 200px; /* Limite do tamanho de cada node */
+    text-align: center;
+}
 
         @keyframes flow-track {
             0% { background-position: 0% 50%; }
@@ -545,32 +557,33 @@
         }
 
         /* SLIDE 7: Ação AGORA */
-        .now-grid {
+.now-grid {
     display: flex;
-    justify-content: center;
+    justify-content: space-between; /* mantém 3 cards distribuídos igualmente */
     gap: 50px;
-    flex-wrap: wrap;
     width: 100%;
-    min-height: 500px;
-    align-items: center;
-    margin-top: -120px; /* sobe os cards sem afetar o título */
+    max-width: 1200px;  /* limita a largura total */
+    margin: -120px auto 0; /* sobe os cards sem afetar o título e centraliza */
+    align-items: flex-start; /* garante que todos comecem alinhados pelo topo */
+    flex-wrap: nowrap; /* impede quebra de linha, sempre 3 cards */
 }
 
-
-        .now-card {
-            width: 350px;          /* aumenta os cards */
-    height: 350px;
+.now-card {
+    flex: 0 0 calc(33.33% - 33.33px); /* sempre 3 cards na linha */
+    min-height: 350px; /* altura mínima para cards iguais */
     background: radial-gradient(circle at 30% 30%, rgba(255,0,255,0.3), rgba(0,255,255,0.2));
     border: 4px solid #00ffff;
     border-radius: 30px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start; /* texto começa do topo */
+    padding-top: 40px; /* distância do topo do card */
     cursor: pointer;
     transition: all 0.6s ease;
     animation: float-now-card 4s ease-in-out infinite;
-        }
+}
+
 
         .now-card:nth-child(1) { animation-delay: 0s; }
         .now-card:nth-child(2) { animation-delay: 0.7s; }
