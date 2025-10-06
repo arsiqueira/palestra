@@ -544,35 +544,36 @@
             font-weight: 600;
         }
 
-        /* SLIDE 7: Ação AGORA */
-
-     .slide-7-container {
+        /* /* SLIDE 7: Ação AGORA */
+.slide-7-container {
     display: flex;
     flex-direction: column;
-    align-items: center;          /* centraliza horizontalmente */
-    justify-content: flex-start;  /* começa do topo */
+    align-items: center;          
+    justify-content: flex-start;  
     height: 100%;             
-    gap: 40px;                    /* espaço entre título e grid */
-    padding: 120px 20px 60px;     /* topo maior para deixar espaço do título */
+    gap: 40px;                    
+    padding: 120px 20px 60px;     
 }
 
 .slide[data-slide="7"] {
-    padding: 0; /* remove o padding padrão do .slide só para este slide */
+    padding: 0;
 }
+
 .now-grid {
     display: flex;
     justify-content: space-between;
     gap: 50px;
     width: 100%;
     max-width: 1200px;
-    align-items: flex-start;
-    flex-wrap: nowrap;
-    margin-top: -60px; /* sobe todos os cards sem afetar o título */
+    align-items: stretch; /* garante que todos os cards cresçam igualmente */
+    flex-wrap: wrap; /* permite quebra de linha em telas menores */
+    margin-top: -60px;
 }
 
+/* CARD */
 .now-card {
-    flex: 0 0 calc(33.33% - 33.33px);
-    height: 350px; 
+    flex: 1 1 300px; /* cards flexíveis, mínimo de 300px */
+    min-height: 320px; /* altura mínima */
     background: radial-gradient(circle at 30% 30%, rgba(255,0,255,0.3), rgba(0,255,255,0.2));
     border: 4px solid #00ffff;
     border-radius: 30px;
@@ -580,13 +581,12 @@
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
-    padding: 20px 20px 20px; /* diminui o topo para subir o texto */
+    padding: 20px;
     box-sizing: border-box;
     cursor: pointer;
     transition: all 0.6s ease;
     animation: float-now-card 4s ease-in-out infinite;
 }
-
 
 /* Ícones do card */
 .now-icon {
@@ -606,14 +606,27 @@
 .now-text {
     text-align: center;
     line-height: 1.4;
-    flex-grow: 1; /* mantém os cards com altura uniforme */
-    overflow-wrap: break-word; /* quebra o texto em vez de cortar */
+    flex-grow: 1;
+    overflow-wrap: break-word;
     word-break: break-word;
-    font-size: clamp(0.9rem, 1.5vw, 1.2rem); /* texto se adapta a diferentes tamanhos de tela */
-    padding: 8px; /* evita que o texto encoste nas bordas */
+    font-size: clamp(0.9rem, 1.5vw, 1.2rem);
+    padding: 8px;
 }
 
-/* Ajuste extra para telas menores */
+/* Ajuste para telas menores */
+@media (max-width: 1024px) {
+    .now-grid {
+        gap: 30px;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .now-card {
+        flex: 1 1 280px;
+        min-height: auto; /* deixa a altura se ajustar ao conteúdo */
+    }
+}
+
 @media (max-width: 768px) {
     .now-text {
         font-size: clamp(0.8rem, 2.5vw, 1rem);
