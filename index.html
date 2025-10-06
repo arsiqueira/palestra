@@ -606,8 +606,19 @@
 .now-text {
     text-align: center;
     line-height: 1.4;
-    flex-grow: 1;     /* garante que ocupe o espaço restante e cards fiquem iguais */
-    overflow: hidden; /* evita que o texto quebre o card */
+    flex-grow: 1; /* mantém os cards com altura uniforme */
+    overflow-wrap: break-word; /* quebra o texto em vez de cortar */
+    word-break: break-word;
+    font-size: clamp(0.9rem, 1.5vw, 1.2rem); /* texto se adapta a diferentes tamanhos de tela */
+    padding: 8px; /* evita que o texto encoste nas bordas */
+}
+
+/* Ajuste extra para telas menores */
+@media (max-width: 768px) {
+    .now-text {
+        font-size: clamp(0.8rem, 2.5vw, 1rem);
+        line-height: 1.3;
+    }
 }
 
 
