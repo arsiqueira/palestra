@@ -94,6 +94,21 @@
             opacity: 0;
             overflow: hidden;
         }
+        .slide-7-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;      /* centraliza horizontalmente */
+    justify-content: flex-start; /* começa do topo */
+    height: 100%;             
+    gap: 40px;                /* espaço entre título e grid */
+    padding: 120px 20px 60px; /* aumenta topo para dar espaço e deixa cards visíveis */
+}
+
+
+.slide[data-slide="7"] {
+    padding: 0; /* remove o padding padrão do .slide só para este slide */
+}
+
 
         .slide.active {
             display: flex;
@@ -399,12 +414,20 @@
             transform: translateX(-50%) scale(1);
         }
 
-        /* SLIDE 6: Timeline */
+        /* SLIDE 6: Timeline 
         .tech-timeline {
             position: relative;
             height: 160px;
             margin-bottom: 60px;
-        }
+        }*/
+
+        .tech-timeline {
+    position: relative;
+    height: 160px;
+    margin: 0 auto 60px;
+    max-width: 1200px; /* Limita a linha do tempo à tela */
+}
+
 
         .timeline-track {
             position: absolute;
@@ -456,7 +479,9 @@
 
         .node-content {
             text-align: center;
-            min-width: 150px;
+    min-width: 150px;
+    max-width: 180px; /* Limite para a largura do texto */
+    word-wrap: break-word; /* Quebra linhas longas */
         }
 
         .node-year {
@@ -464,7 +489,7 @@
             font-size: 1.6em;
             color: #00ffff;
             font-weight: bold;
-            margin-bottom: 5px;
+            margin-bottom: 50px;
         }
 
         .node-title {
@@ -521,25 +546,30 @@
 
         /* SLIDE 7: Ação AGORA */
         .now-grid {
-            display: flex;
-            justify-content: center;
-            gap: 50px;
-            margin-bottom: 60px;
-        }
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+    flex-wrap: wrap;
+    width: 100%;
+    min-height: 500px;
+    align-items: center;
+    margin-top: -120px; /* sobe os cards sem afetar o título */
+}
+
 
         .now-card {
-            width: 280px;
-            height: 280px;
-            background: radial-gradient(circle at 30% 30%, rgba(255, 0, 255, 0.3), rgba(0, 255, 255, 0.2));
-            border: 4px solid #00ffff;
-            border-radius: 30px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            transition: all 0.6s ease;
-            animation: float-now-card 4s ease-in-out infinite;
+            width: 350px;          /* aumenta os cards */
+    height: 350px;
+    background: radial-gradient(circle at 30% 30%, rgba(255,0,255,0.3), rgba(0,255,255,0.2));
+    border: 4px solid #00ffff;
+    border-radius: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.6s ease;
+    animation: float-now-card 4s ease-in-out infinite;
         }
 
         .now-card:nth-child(1) { animation-delay: 0s; }
@@ -789,6 +819,7 @@
                         <div class="node-content">
                             <div class="node-year">2020</div>
                             <div class="node-title">Início</div>
+                            <div class="node-desc">Ganha força em plena pandemia</div>
                         </div>
                     </div>
 
@@ -838,60 +869,37 @@
                     </div>
                 </div>
 
-                <div class="impact-stats">
-                    <div class="impact-box">
-                        <div class="impact-number">97M</div>
-                        <div class="impact-label">Novos Empregos</div>
-                    </div>
-                    <div class="impact-box">
-                        <div class="impact-number">$375B</div>
-                        <div class="impact-label">Mercado Global</div>
-                    </div>
-                    <div class="impact-box">
-                        <div class="impact-number">85%</div>
-                        <div class="impact-label">Empresas Usando IA</div>
-                    </div>
-                    <div class="impact-box">
-                        <div class="impact-number">+40%</div>
-                        <div class="impact-label">Produtividade</div>
-                    </div>
-                </div>
+                
             </div>
         </div>
 
-        <!-- Slide 7: AGORA -->
-        <div class="slide" data-slide="7">
-            <div style="width: 100%; max-width: 1600px;">
-                <h2 class="section-title-3d">O Momento É AGORA</h2>
-                
-                <div class="now-grid">
-                    <div class="now-card">
-                        <div class="now-icon">🚀</div>
-                        <div class="now-title">APRENDA</div>
-                        <div class="now-text">Domine IA hoje<br>Seja líder amanhã</div>
-                    </div>
+        <!-- Slide 7: 3 A's da IA -->
+<div class="slide" data-slide="7">
+    <div class="slide-7-container"> <!-- Container centralizado para o slide 7 -->
+        <h2 class="section-title-3d">O Momento É Agora</h2>
+        
+        <div class="now-grid">
+            <div class="now-card">
+                <div class="now-icon">📚</div>
+                <div class="now-title">APRENDA</div>
+                <div class="now-text">Domine a IA<br>e esteja preparado para o futuro</div>
+            </div>
 
-                    <div class="now-card">
-                        <div class="now-icon">💡</div>
-                        <div class="now-title">ADAPTE-SE</div>
-                        <div class="now-text">Mudança constante<br>Evolução necessária</div>
-                    </div>
+            <div class="now-card">
+                <div class="now-icon">⚡</div>
+                <div class="now-title">ADAPTE</div>
+                <div class="now-text">Mude com a tecnologia<br>Evolua com o mercado</div>
+            </div>
 
-                    <div class="now-card">
-                        <div class="now-icon">⚡</div>
-                        <div class="now-title">INOVE</div>
-                        <div class="now-text">Criatividade humana<br>Potência da IA</div>
-                    </div>
-                </div>
-
-                <div class="final-message-box">
-                    <div class="message-icon">🌟</div>
-                    <div class="message-main">O FUTURO NÃO ESPERA</div>
-                    <div class="message-sub">Humano + IA = Nova Era do Trabalho</div>
-                </div>
+            <div class="now-card">
+                <div class="now-icon">🚀</div>
+                <div class="now-title">APROVEITE</div>
+                <div class="now-text">Potencialize suas habilidades<br>Seja protagonista da nova era</div>
             </div>
         </div>
     </div>
+</div>
+
 
     <!-- Botão de navegação -->
     <button class="nav-orb" id="navButton" onclick="nextSlide()">→</button>
