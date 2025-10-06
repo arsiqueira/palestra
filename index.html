@@ -559,33 +559,34 @@
 .slide[data-slide="7"] {
     padding: 0; /* remove o padding padrão do .slide só para este slide */
 }
-
 .now-grid {
     display: flex;
-    justify-content: space-between; /* mantém 3 cards distribuídos igualmente */
+    justify-content: space-between;
     gap: 50px;
     width: 100%;
-    max-width: 1200px;  /* limita a largura total */
-    align-items: flex-start; /* garante que todos comecem alinhados pelo topo */
-    flex-wrap: nowrap; /* impede quebra de linha, sempre 3 cards */
+    max-width: 1200px;
+    align-items: flex-start;
+    flex-wrap: nowrap;
+    margin-top: -60px; /* sobe todos os cards sem afetar o título */
 }
 
 .now-card {
-    flex: 0 0 calc(33.33% - 33.33px); /* sempre 3 cards na linha */
-    height: 350px; /* altura fixa para todos os cards */
+    flex: 0 0 calc(33.33% - 33.33px);
+    height: 350px; 
     background: radial-gradient(circle at 30% 30%, rgba(255,0,255,0.3), rgba(0,255,255,0.2));
     border: 4px solid #00ffff;
     border-radius: 30px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: flex-start; /* texto começa do topo */
-    padding: 40px 20px 20px; /* topo + espaçamento interno */
-    box-sizing: border-box;   /* garante que padding não aumente a largura */
+    justify-content: flex-start;
+    padding: 20px 20px 20px; /* diminui o topo para subir o texto */
+    box-sizing: border-box;
     cursor: pointer;
     transition: all 0.6s ease;
     animation: float-now-card 4s ease-in-out infinite;
 }
+
 
 /* Ícones do card */
 .now-icon {
