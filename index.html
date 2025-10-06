@@ -306,15 +306,15 @@
         /* SLIDE 4: Profissões em Linha */
         .professions-line {
     display: flex;
-    gap: 25px;
-    width: 100%;
-    flex-wrap: nowrap;               /* impede quebra de linha */
-    justify-content: space-between;  /* distribui os 4 cards igualmente */
+    justify-content: space-between; /* distribui os 4 cards uniformemente */
+    gap: 20px; /* controla a distância entre eles */
+    max-width: 1200px; /* limita a largura da linha */
+    margin: 0 auto; /* centraliza */
+    flex-wrap: nowrap; /* impede quebra de linha */
 }
 
 .profession-item {
-    flex: 0 0 23%;                   /* cada card ocupa ~1/4 da tela */
-    min-width: 200px;                /* garante um mínimo em telas menores */
+    flex: 0 0 calc(25% - 15px); /* sempre 4 cards na linha */
     background: linear-gradient(135deg, rgba(255, 0, 255, 0.1), rgba(0, 255, 255, 0.1));
     border: 2px solid #ff00ff;
     border-radius: 20px;
@@ -322,6 +322,7 @@
     text-align: center;
     transition: all 0.4s ease;
     cursor: pointer;
+    min-width: 0; /* evita overflow */
 }
 
 
