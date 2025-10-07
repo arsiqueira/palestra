@@ -879,6 +879,133 @@
                 min-width: 250px;
             }
         }
+
+
+        /* ===== RESPONSIVO GERAL ===== */
+@media (max-width: 1800px) {
+    .cards-grid,
+    .professions-line,
+    .now-grid,
+    .impact-stats {
+        gap: 50px; /* diminui o espaçamento */
+    }
+
+    .info-card, .profession-item, .now-card, .impact-box {
+        min-width: 300px;
+    }
+}
+
+@media (max-width: 1400px) {
+    .hologram-title { font-size: 4.5em; }
+    .subtitle-glitch { font-size: 2em; }
+    .author-tag { font-size: 1.4em; }
+
+    .section-title-3d { font-size: 3em; }
+
+    .cards-grid, .comparison-grid, .professions-line, .now-grid, .impact-stats {
+        gap: 40px;
+    }
+
+    .info-card h3 { font-size: 1.5em; }
+    .info-card p { font-size: 1.1em; }
+
+    .profession-item h4 { font-size: 1.6em; }
+    .profession-item p { font-size: 1.1em; }
+
+    .now-title { font-size: 24px; }
+    .now-text { font-size: 20px; }
+
+    .skill-orb { width: 280px; height: 280px; font-size: 1.8em; }
+    .skill-orb .icon { font-size: 3.5em; }
+    .skill-tooltip { width: 280px; bottom: -140px; font-size: 0.8em; }
+
+    .tech-timeline { height: 220px; }
+    .node-dot { width: 40px; height: 40px; border: 5px solid #000; }
+    .node-dot.active { width: 50px; height: 50px; }
+    .node-year { font-size: 2em; }
+    .node-title { font-size: 1.5em; }
+    .node-desc { font-size: 1.1em; }
+
+    .impact-number { font-size: 3em; }
+    .impact-label { font-size: 1.3em; }
+}
+
+@media (max-width: 1024px) {
+    .cards-grid, .comparison-grid, .professions-line, .now-grid, .impact-stats {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .info-card, .profession-item, .now-card, .impact-box {
+        flex: 0 0 45%;
+        margin-bottom: 40px;
+    }
+
+    .skill-orb { width: 220px; height: 220px; font-size: 1.5em; }
+    .skill-orb .icon { font-size: 3em; }
+    .skill-tooltip { width: 240px; bottom: -120px; font-size: 0.75em; }
+
+    .tech-timeline { height: 180px; }
+    .node-dot { width: 30px; height: 30px; border: 4px solid #000; }
+    .node-dot.active { width: 40px; height: 40px; }
+    .node-year { font-size: 1.6em; }
+    .node-title { font-size: 1.3em; }
+    .node-desc { font-size: 1em; }
+
+    .impact-number { font-size: 2.5em; }
+    .impact-label { font-size: 1.1em; }
+
+    .now-title { font-size: 20px; }
+    .now-text { font-size: 18px; }
+}
+
+@media (max-width: 768px) {
+    .info-card, .profession-item, .now-card, .impact-box {
+        flex: 0 0 90%;
+    }
+
+    .hologram-title { font-size: 3em; }
+    .subtitle-glitch { font-size: 1.6em; }
+    .author-tag { font-size: 1.2em; }
+
+    .section-title-3d { font-size: 2em; }
+
+    .skill-orb { width: 180px; height: 180px; font-size: 1.2em; }
+    .skill-orb .icon { font-size: 2.5em; }
+    .skill-tooltip { width: 200px; bottom: -100px; font-size: 0.7em; }
+
+    .tech-timeline { height: 140px; }
+    .node-dot { width: 25px; height: 25px; border: 3px solid #000; }
+    .node-dot.active { width: 30px; height: 30px; }
+    .node-year { font-size: 1.4em; }
+    .node-title { font-size: 1.2em; }
+    .node-desc { font-size: 0.95em; }
+
+    .impact-number { font-size: 2em; }
+    .impact-label { font-size: 1em; }
+
+    .now-title { font-size: 18px; }
+    .now-text { font-size: 16px; }
+}
+
+@media (max-width: 480px) {
+    .skill-orb { width: 140px; height: 140px; font-size: 1em; }
+    .skill-orb .icon { font-size: 2em; }
+    .skill-tooltip { width: 160px; bottom: -80px; font-size: 0.65em; }
+
+    .info-card, .profession-item, .now-card, .impact-box {
+        flex: 0 0 95%;
+    }
+
+    .cards-grid, .comparison-grid, .professions-line, .now-grid, .impact-stats {
+        gap: 25px;
+    }
+
+    .hologram-title { font-size: 2em; }
+    .subtitle-glitch { font-size: 1.4em; }
+    .author-tag { font-size: 1em; }
+}
+
     </style>
 </head>
 
