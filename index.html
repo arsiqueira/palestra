@@ -440,12 +440,13 @@
             margin-bottom: 60px;
         }*/
 
-       .tech-timeline {
+       /* SLIDE 6: Linha do Tempo */
+.tech-timeline {
     position: relative;
-    height: 160px;
-    margin: 0 auto 60px;
-    max-width: 1000px; /* Limita a linha do tempo à tela */
-    width: 100%;        /* Para se ajustar à tela menor que 1200px */
+    height: 280px; /* antes 160px — deixa mais espaço vertical */
+    margin: 0 auto 100px;
+    max-width: 1600px; /* permite expandir sem sair da tela */
+    width: 100%;
 }
 
 .timeline-track {
@@ -453,125 +454,127 @@
     top: 50%;
     left: 0;
     right: 0;
-    height: 8px;
+    height: 14px; /* mais grossa e visível */
     background: linear-gradient(90deg, #ff00ff, #00ffff, #ff00ff);
     background-size: 200% 100%;
     animation: flow-track 3s linear infinite;
-    box-shadow: 0 0 30px rgba(0, 255, 255, 0.8);
+    box-shadow: 0 0 50px rgba(0, 255, 255, 0.9);
     border-radius: 10px;
 }
 
-/* Nodes da timeline */
+@keyframes flow-track {
+    0% { background-position: 0% 50%; }
+    100% { background-position: 200% 50%; }
+}
+
+/* Cada nó (ponto da linha) */
 .timeline-node {
     position: absolute;
     top: 50%;
     transform: translate(-50%, -50%);
-    width: auto;
-    max-width: 200px; /* Limite do tamanho de cada node */
     text-align: center;
+    max-width: 280px; /* antes 200px */
 }
 
-        @keyframes flow-track {
-            0% { background-position: 0% 50%; }
-            100% { background-position: 200% 50%; }
-        }
+.node-dot {
+    width: 50px; /* maior */
+    height: 50px;
+    background: #00ffff;
+    border: 6px solid #000;
+    border-radius: 50%;
+    margin: 0 auto 25px;
+    box-shadow: 0 0 50px #00ffff;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
 
-        .timeline-node {
-            position: absolute;
-            top: 50%;
-            transform: translate(-50%, -50%);
-        }
+.node-dot:hover {
+    transform: scale(1.6);
+    box-shadow: 0 0 100px #00ffff;
+}
 
-        .node-dot {
-            width: 30px;
-            height: 30px;
-            background: #00ffff;
-            border: 5px solid #000;
-            border-radius: 50%;
-            margin: 0 auto 20px;
-            box-shadow: 0 0 30px #00ffff;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
+.node-dot.active {
+    width: 60px;
+    height: 60px;
+    background: #ff00ff;
+    box-shadow: 0 0 80px #ff00ff;
+}
 
-        .node-dot:hover {
-            transform: scale(1.5);
-            box-shadow: 0 0 60px #00ffff;
-        }
+/* Conteúdo de cada nó */
+.node-content {
+    text-align: center;
+    min-width: 180px;
+    max-width: 240px;
+    word-wrap: break-word;
+}
 
-        .node-dot.active {
-            width: 40px;
-            height: 40px;
-            background: #ff00ff;
-            box-shadow: 0 0 60px #ff00ff;
-        }
+/* Ano */
+.node-year {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 2.4em; /* antes 1.6em */
+    color: #00ffff;
+    font-weight: bold;
+    margin-bottom: 30px;
+}
 
-        .node-content {
-            text-align: center;
-    min-width: 150px;
-    max-width: 180px; /* Limite para a largura do texto */
-    word-wrap: break-word; /* Quebra linhas longas */
-        }
+/* Título */
+.node-title {
+    font-size: 1.8em; /* antes 1.4em */
+    color: #fff;
+    font-weight: bold;
+    margin-bottom: 6px;
+}
 
-        .node-year {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 1.6em;
-            color: #00ffff;
-            font-weight: bold;
-            margin-bottom: 50px;
-        }
+/* Descrição */
+.node-desc {
+    font-size: 1.3em; /* antes 1.1em */
+    color: #ccc;
+    line-height: 1.6;
+}
 
-        .node-title {
-            font-size: 1.4em;
-            color: #fff;
-            font-weight: bold;
-            margin-bottom: 3px;
-        }
+/* Estatísticas abaixo da timeline */
+.impact-stats {
+    display: flex;
+    justify-content: space-around;
+    gap: 60px; /* mais espaço */
+    flex-wrap: wrap;
+    margin-top: 80px;
+}
 
-        .node-desc {
-            font-size: 1.1em;
-            color: #ccc;
-        }
+.impact-box {
+    flex: 1;
+    min-width: 300px;
+    background: linear-gradient(135deg, rgba(255, 0, 255, 0.2), rgba(0, 255, 255, 0.15));
+    border: 3px solid #00ffff;
+    border-radius: 25px;
+    padding: 50px 40px; /* aumenta os boxes */
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.5s ease;
+}
 
-        .impact-stats {
-            display: flex;
-            justify-content: space-around;
-            gap: 30px;
-        }
+.impact-box:hover {
+    transform: translateY(-20px) scale(1.05);
+    box-shadow: 0 40px 100px rgba(0, 255, 255, 0.6);
+    border-color: #ff00ff;
+}
 
-        .impact-box {
-            flex: 1;
-            min-width: 0;
-            background: linear-gradient(135deg, rgba(255, 0, 255, 0.15), rgba(0, 255, 255, 0.15));
-            border: 3px solid #00ffff;
-            border-radius: 25px;
-            padding: 30px 25px;
-            text-align: center;
-            cursor: pointer;
-            transition: all 0.5s ease;
-        }
+.impact-number {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 4em; /* maior e mais visível */
+    background: linear-gradient(135deg, #ff00ff, #00ffff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: bold;
+    margin-bottom: 16px;
+}
 
-        .impact-box:hover {
-            transform: translateY(-15px) scale(1.05);
-            box-shadow: 0 30px 80px rgba(0, 255, 255, 0.6);
-            border-color: #ff00ff;
-        }
+.impact-label {
+    font-size: 1.6em;
+    color: #fff;
+    font-weight: 600;
+}
 
-        .impact-number {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 3.2em;
-            background: linear-gradient(135deg, #ff00ff, #00ffff);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            font-weight: bold;
-            margin-bottom: 12px;
-        }
-
-        .impact-label {
-            font-size: 1.3em;
-            color: #fff;
-            font-weight: 600;
-        }
 
         /* /* SLIDE 7: Ação AGORA */
 .slide-7-container {
@@ -1199,6 +1202,7 @@
     </script>
 </body>
 </html>
+
 
 
 
