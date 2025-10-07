@@ -309,48 +309,56 @@
         /* SLIDE 4: Profissões em Linha */
         .professions-line {
     display: flex;
-    justify-content: space-between; /* distribui os 4 cards uniformemente */
-    gap: 20px; /* controla a distância entre eles */
-    max-width: 1200px; /* limita a largura da linha */
-    margin: 0 auto; /* centraliza */
-    flex-wrap: nowrap; /* impede quebra de linha */
+    justify-content: space-between;
+    gap: 40px; /* mais espaço entre os cards */
+    max-width: 1600px; /* deixa a linha mais larga */
+    margin: 80px auto; /* adiciona respiro acima e abaixo */
+    flex-wrap: nowrap;
+    font-size: 22px; /* aumenta o tamanho base das fontes */
 }
 
 .profession-item {
-    flex: 0 0 calc(25% - 15px); /* sempre 4 cards na linha */
-    background: linear-gradient(135deg, rgba(255, 0, 255, 0.1), rgba(0, 255, 255, 0.1));
-    border: 2px solid #ff00ff;
-    border-radius: 20px;
-    padding: 30px 20px;
+    flex: 0 0 calc(25% - 30px); /* mantém 4 cards, mas com mais largura */
+    background: linear-gradient(135deg, rgba(255, 0, 255, 0.15), rgba(0, 255, 255, 0.15));
+    border: 3px solid #ff00ff;
+    border-radius: 25px;
+    padding: 60px 40px; /* aumenta o tamanho interno dos cards */
     text-align: center;
     transition: all 0.4s ease;
     cursor: pointer;
-    min-width: 0; /* evita overflow */
+    min-width: 0;
+    color: #fff;
 }
 
+.profession-item:hover {
+    transform: translateY(-20px) scale(1.05);
+    box-shadow: 0 25px 80px rgba(255, 0, 255, 0.4);
+    border-color: #00ffff;
+}
 
-        .profession-item:hover {
-            transform: translateY(-15px);
-            box-shadow: 0 20px 60px rgba(255, 0, 255, 0.4);
-            border-color: #00ffff;
-        }
+/* Ícone */
+.profession-icon {
+    font-size: 5em; /* maior destaque para os ícones */
+    margin-bottom: 25px;
+}
 
-        .profession-icon {
-            font-size: 3.5em;
-            margin-bottom: 15px;
-        }
+/* Título */
+.profession-item h4 {
+    font-size: 2em; /* aumenta título */
+    color: #00ffff;
+    margin-bottom: 16px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
 
-        .profession-item h4 {
-            font-size: 1.4em;
-            color: #00ffff;
-            margin-bottom: 12px;
-        }
-
-        .profession-item p {
-            font-size: 1.1em;
-            line-height: 1.5;
-            color: #ddd;
-        }
+/* Texto */
+.profession-item p {
+    font-size: 1.3em;
+    line-height: 1.7;
+    color: #ddd;
+    max-width: 90%;
+    margin: 0 auto;
+}
 
         /* SLIDE 5: Habilidades */
         .skills-row {
@@ -1186,6 +1194,7 @@
     </script>
 </body>
 </html>
+
 
 
 
