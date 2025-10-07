@@ -583,33 +583,32 @@
     align-items: center;      /* centraliza horizontalmente */
     justify-content: center;   /* centraliza verticalmente */
     height: 100vh;            /* ocupa a tela inteira */
-    gap: 60px;                 /* espaço entre título e grid */
-    padding: 80px 40px;
+    gap: 80px;                 /* mais espaço entre título e cards */
+    padding: 60px 40px;
     text-align: center;
 }
 
 .now-grid {
     display: flex;
     justify-content: center;  /* centraliza os cards */
-    gap: 60px;                /* espaço entre os cards */
+    gap: 80px;                /* aumenta espaço entre os cards */
     width: 100%;
-    max-width: 1600px;        /* limita sem ultrapassar a tela */
+    max-width: 1800px;        /* mais largura para cards grandes */
     align-items: flex-start;
-    flex-wrap: nowrap;        /* mantém os cards em uma única linha */
-    margin-top: 0;
+    flex-wrap: nowrap;        /* mantém 3 cards enfileirados */
 }
 
 .now-card {
-    flex: 0 0 30%;            /* mantém 3 cards enfileirados */
-    height: 400px;            /* aumenta a altura */
-    background: radial-gradient(circle at 30% 30%, rgba(255, 0, 255, 0.35), rgba(0, 255, 255, 0.25));
+    flex: 0 0 28%;            /* mantém 3 cards em linha */
+    height: 450px;            /* aumenta altura do card */
+    background: radial-gradient(circle at 30% 30%, rgba(255, 0, 255, 0.4), rgba(0, 255, 255, 0.25));
     border: 4px solid #00ffff;
-    border-radius: 30px;
+    border-radius: 35px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
-    padding: 30px 25px;
+    padding: 40px 30px;       /* aumenta espaço interno */
     box-sizing: border-box;
     cursor: pointer;
     transition: all 0.6s ease;
@@ -618,25 +617,26 @@
 
 /* Ícones do card */
 .now-icon {
-    font-size: 4rem;
-    margin-bottom: 20px;
+    font-size: 5rem;          /* ícones bem grandes */
+    margin-bottom: 25px;
 }
 
 /* Título do card */
 .now-title {
-    font-size: 3rem;
+    font-size: 2.5rem;        /* título grande e legível */
     font-weight: bold;
-    margin-bottom: 15px;
+    margin-bottom: 20px;
 }
 
 /* Texto do card */
 .now-text {
-    font-size: 2rem;
+    font-size: 1.6rem;        /* texto maior e fácil de ler */
     text-align: center;
-    line-height: 1.6;
+    line-height: 1.8;
     flex-grow: 1;
     overflow: hidden;
 }
+
 
 /* Ajuste para telas menores */
 @media (max-width: 1024px) {
@@ -1195,6 +1195,7 @@
     </script>
 </body>
 </html>
+
 
 
 
