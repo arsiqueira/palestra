@@ -580,40 +580,36 @@
 .slide-7-container {
     display: flex;
     flex-direction: column;
-    align-items: center;          
-    justify-content: flex-start;  
-    height: 100%;             
-    gap: 40px;                    
-    padding: 120px 20px 60px;     
-}
-
-.slide[data-slide="7"] {
-    padding: 0;
+    align-items: center;          /* centraliza horizontalmente */
+    justify-content: center;       /* centraliza verticalmente */
+    height: 100vh;                /* ocupa a tela inteira */
+    gap: 60px;                     /* mais espaço entre título e grid */
+    padding: 80px 40px;            /* ajusta espaçamento interno */
+    text-align: center;            /* centraliza todo o texto */
 }
 
 .now-grid {
     display: flex;
-    justify-content: space-between;
-    gap: 50px;
+    justify-content: center;       /* centraliza os cards horizontalmente */
+    gap: 60px;                     /* aumenta espaçamento entre os cards */
     width: 100%;
-    max-width: 1200px;
-    align-items: stretch; /* garante que todos os cards cresçam igualmente */
-    flex-wrap: wrap; /* permite quebra de linha em telas menores */
-    margin-top: -60px;
+    max-width: 1600px;             /* deixa os cards maiores sem ultrapassar a tela */
+    align-items: flex-start;
+    flex-wrap: wrap;               /* permite quebrar linha em telas menores */
+    margin-top: 0;                 /* remove deslocamento negativo */
 }
 
-/* CARD */
 .now-card {
-    flex: 1 1 300px; /* cards flexíveis, mínimo de 300px */
-    min-height: 320px; /* altura mínima */
-    background: radial-gradient(circle at 30% 30%, rgba(255,0,255,0.3), rgba(0,255,255,0.2));
+    flex: 0 0 calc(33.33% - 40px); /* mantém 3 cards por linha com espaçamento maior */
+    height: 400px;                  /* aumenta a altura do card */
+    background: radial-gradient(circle at 30% 30%, rgba(255, 0, 255, 0.35), rgba(0, 255, 255, 0.25));
     border: 4px solid #00ffff;
     border-radius: 30px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
-    padding: 20px;
+    padding: 30px 25px;             /* aumenta espaço interno */
     box-sizing: border-box;
     cursor: pointer;
     transition: all 0.6s ease;
@@ -622,28 +618,26 @@
 
 /* Ícones do card */
 .now-icon {
-    font-size: 3rem;
-    margin-bottom: 15px;
+    font-size: 4rem;                /* maior destaque */
+    margin-bottom: 20px;
 }
 
 /* Título do card */
 .now-title {
-    font-size: 1.5rem;
+    font-size: 2rem;                /* título maior */
     font-weight: bold;
-    margin-bottom: 10px;
-    text-align: center;
+    margin-bottom: 15px;
 }
 
 /* Texto do card */
 .now-text {
+    font-size: 1.3rem;              /* texto maior e legível */
     text-align: center;
-    line-height: 1.4;
+    line-height: 1.6;
     flex-grow: 1;
-    overflow-wrap: break-word;
-    word-break: break-word;
-    font-size: clamp(0.9rem, 1.5vw, 1.2rem);
-    padding: 8px;
+    overflow: hidden;
 }
+
 
 /* Ajuste para telas menores */
 @media (max-width: 1024px) {
@@ -1202,6 +1196,7 @@
     </script>
 </body>
 </html>
+
 
 
 
