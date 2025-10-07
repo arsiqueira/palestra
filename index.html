@@ -360,73 +360,78 @@
     margin: 0 auto;
 }
 
-        /* SLIDE 5: Habilidades */
-        .skills-row {
-            display: flex;
-            justify-content: center;
-            gap: 50px;
-        }
+       /* SLIDE 5: Habilidades */
+.skills-row {
+    display: flex;
+    justify-content: center;
+    gap: 100px; /* mais espaço entre as orbs */
+    flex-wrap: wrap; /* permite quebrar linha em telas menores */
+    margin-top: 80px;
+}
 
-        .skill-orb {
-            width: 220px;
-            height: 220px;
-            border-radius: 50%;
-            background: radial-gradient(circle at 30% 30%, rgba(255,0,255,0.4), rgba(0,255,255,0.2));
-            border: 3px solid #00ffff;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5em;
-            font-weight: bold;
-            cursor: pointer;
-            transition: all 0.5s ease;
-            animation: float-orb 4s ease-in-out infinite;
-            position: relative;
-        }
+.skill-orb {
+    width: 350px;   /* antes: 220px → bem maior */
+    height: 350px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 30% 30%, rgba(255,0,255,0.5), rgba(0,255,255,0.3));
+    border: 4px solid #00ffff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.2em; /* aumenta o texto dentro */
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.5s ease;
+    animation: float-orb 4s ease-in-out infinite;
+    position: relative;
+    box-shadow: 0 0 60px rgba(0, 255, 255, 0.3);
+}
 
-        .skill-orb:nth-child(1) { animation-delay: 0s; }
-        .skill-orb:nth-child(2) { animation-delay: 0.7s; }
-        .skill-orb:nth-child(3) { animation-delay: 1.4s; }
+.skill-orb:nth-child(1) { animation-delay: 0s; }
+.skill-orb:nth-child(2) { animation-delay: 0.7s; }
+.skill-orb:nth-child(3) { animation-delay: 1.4s; }
 
-        @keyframes float-orb {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-20px); }
-        }
+@keyframes float-orb {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-25px); }
+}
 
-        .skill-orb:hover {
-            box-shadow: 0 0 80px rgba(0,255,255,0.8);
-            transform: scale(1.2);
-        }
+.skill-orb:hover {
+    box-shadow: 0 0 120px rgba(0,255,255,0.8);
+    transform: scale(1.15);
+}
 
-        .skill-orb .icon {
-            font-size: 2.8em;
-            margin-bottom: 8px;
-        }
+/* Ícone dentro da orb */
+.skill-orb .icon {
+    font-size: 4.5em; /* ícone bem maior */
+    margin-bottom: 15px;
+}
 
-        .skill-tooltip {
-            position: absolute;
-            bottom: -120px;
-            left: 50%;
-            transform: translateX(-50%) scale(0);
-            width: 280px;
-            background: rgba(0, 0, 0, 0.95);
-            border: 2px solid #00ffff;
-            border-radius: 15px;
-            padding: 20px;
-            font-size: 0.7em;
-            line-height: 1.6;
-            color: #fff;
-            opacity: 0;
-            transition: all 0.4s ease;
-            pointer-events: none;
-            z-index: 100;
-        }
+/* Tooltip */
+.skill-tooltip {
+    position: absolute;
+    bottom: -160px; /* ajustado pro novo tamanho */
+    left: 50%;
+    transform: translateX(-50%) scale(0);
+    width: 340px;
+    background: rgba(0, 0, 0, 0.95);
+    border: 2px solid #00ffff;
+    border-radius: 15px;
+    padding: 25px;
+    font-size: 0.9em;
+    line-height: 1.7;
+    color: #fff;
+    opacity: 0;
+    transition: all 0.4s ease;
+    pointer-events: none;
+    z-index: 100;
+}
 
-        .skill-orb:hover .skill-tooltip {
-            opacity: 1;
-            transform: translateX(-50%) scale(1);
-        }
+.skill-orb:hover .skill-tooltip {
+    opacity: 1;
+    transform: translateX(-50%) scale(1);
+}
 
         /* SLIDE 6: Timeline 
         .tech-timeline {
@@ -1194,6 +1199,7 @@
     </script>
 </body>
 </html>
+
 
 
 
