@@ -212,61 +212,69 @@
         }
 
         /* SLIDE 3: Comparação */
-         .comparison-grid {
+         /* SLIDE 3: Comparação */
+.comparison-grid {
     display: flex;
-    justify-content: center;   /* centraliza horizontalmente */
-    align-items: center;       /* centraliza verticalmente */
+    justify-content: center;    /* Centraliza horizontalmente */
+    align-items: center;        /* Centraliza verticalmente */
     gap: 40px;
     max-width: 1600px;
     width: 100%;
-    height: 100vh;             /* ocupa toda a altura da tela */
-    font-size: 28px;           /* aumenta o tamanho da fonte */
-    text-align: center;        /* centraliza o texto dentro dos itens */
+    height: 100vh;              /* Ocupa a altura total da tela */
+    margin: 0 auto;             /* Garante centralização horizontal */
+    font-size: 28px;            /* Tamanho das fontes */
+    text-align: center;         /* Centraliza o texto dentro dos blocos */
 }
 
+/* Itens (caixas da comparação) */
+.comparison-side {
+    flex: 1;
+    background: rgba(255, 255, 255, 0.05);
+    padding: 40px 35px;
+    border-radius: 20px;
+    transition: all 0.5s ease;
+    color: #fff;
+}
 
-        .comparison-side {
-            flex: 1;
-            background: rgba(255, 255, 255, 0.03);
-            padding: 40px 35px;
-            border-radius: 20px;
-            transition: all 0.5s ease;
-        }
+/* Esquerda (magenta) */
+.comparison-left {
+    border: 3px solid #ff00ff;
+    box-shadow: 0 0 40px rgba(255, 0, 255, 0.3);
+}
 
-        .comparison-left {
-            border: 3px solid #ff00ff;
-            box-shadow: 0 0 40px rgba(255,0,255,0.3);
-        }
+.comparison-left:hover {
+    box-shadow: 0 0 80px rgba(255, 0, 255, 0.6);
+    transform: translateX(-10px) scale(1.02);
+}
 
-        .comparison-left:hover {
-            box-shadow: 0 0 80px rgba(255,0,255,0.6);
-            transform: translateX(-10px) scale(1.02);
-        }
+/* Direita (ciano) */
+.comparison-right {
+    border: 3px solid #00ffff;
+    box-shadow: 0 0 40px rgba(0, 255, 255, 0.3);
+}
 
-        .comparison-right {
-            border: 3px solid #00ffff;
-            box-shadow: 0 0 40px rgba(0,255,255,0.3);
-        }
+.comparison-right:hover {
+    box-shadow: 0 0 80px rgba(0, 255, 255, 0.6);
+    transform: translateX(10px) scale(1.02);
+}
 
-        .comparison-right:hover {
-            box-shadow: 0 0 80px rgba(0,255,255,0.6);
-            transform: translateX(10px) scale(1.02);
-        }
+/* O “VS” no meio */
+.vs-divider {
+    font-size: 6em;
+    font-family: 'Orbitron', sans-serif;
+    background: linear-gradient(135deg, #ff00ff, #00ffff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: rotate-vs 4s linear infinite;
+    flex-shrink: 0;
+}
 
-        .vs-divider {
-            font-size: 6em;
-            font-family: 'Orbitron', sans-serif;
-            background: linear-gradient(135deg, #ff00ff, #00ffff);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            animation: rotate-vs 4s linear infinite;
-            flex-shrink: 0;
-        }
+/* Animação do “VS” */
+@keyframes rotate-vs {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
 
-        @keyframes rotate-vs {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
-        }
 
         .comparison-side h3 {
             font-size: 2.3em;
@@ -1178,6 +1186,7 @@
     </script>
 </body>
 </html>
+
 
 
 
