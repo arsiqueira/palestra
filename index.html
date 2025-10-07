@@ -1,10 +1,13 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>O Futuro do Trabalho | IA</title>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;600;700&display=swap"
+        rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -20,7 +23,9 @@
             height: 100vh;
         }
 
-        h1, h2, h3 {
+        h1,
+        h2,
+        h3 {
             font-family: 'Orbitron', sans-serif;
         }
 
@@ -45,7 +50,7 @@
             justify-content: space-between;
             align-items: center;
             z-index: 100;
-            background: linear-gradient(180deg, rgba(0,0,0,0.8) 0%, transparent 100%);
+            background: linear-gradient(180deg, rgba(0, 0, 0, 0.8) 0%, transparent 100%);
         }
 
         .progress-indicator {
@@ -57,7 +62,7 @@
             width: 12px;
             height: 12px;
             border-radius: 50%;
-            background: rgba(255,255,255,0.2);
+            background: rgba(255, 255, 255, 0.2);
             transition: all 0.3s ease;
             cursor: pointer;
         }
@@ -72,10 +77,10 @@
             font-family: 'Orbitron', sans-serif;
             font-size: 1em;
             color: #00ffff;
-            background: rgba(0,0,0,0.5);
+            background: rgba(0, 0, 0, 0.5);
             padding: 10px 20px;
             border-radius: 20px;
-            border: 1px solid rgba(0,255,255,0.3);
+            border: 1px solid rgba(0, 255, 255, 0.3);
         }
 
         /* Container Principal */
@@ -94,7 +99,7 @@
             opacity: 0;
             overflow: hidden;
         }
-        
+
 
 
         .slide.active {
@@ -103,8 +108,15 @@
         }
 
         @keyframes slideEnter {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         .slide::-webkit-scrollbar {
@@ -112,12 +124,12 @@
         }
 
         /* SLIDE 1: Portal */
-        
-.portal-scene {
-    text-align: center;
-    width: 100%;
-    font-size: 28px; /* aumenta o tamanho do texto */
-}
+        .portal-scene {
+            text-align: center;
+            width: 100%;
+            font-size: 24px;
+            /* aumenta o tamanho do texto */
+        }
 
 
         .hologram-title {
@@ -131,8 +143,15 @@
         }
 
         @keyframes gradient-shift {
-            0%, 100% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
+
+            0%,
+            100% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
         }
 
         .subtitle-glitch {
@@ -195,8 +214,15 @@
         }
 
         @keyframes float-icon {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-15px); }
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-15px);
+            }
         }
 
         .info-card h3 {
@@ -212,77 +238,88 @@
         }
 
         /* SLIDE 3: Comparação */
-.comparison-grid {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 40px;
-    max-width: 1600px;
-    width: 100%;
-    font-size: 28px;
-    text-align: center;
-    margin: 0 auto;
-    padding: 40px 0; /* espaço vertical */
-}
+        .comparison-grid {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 40px;
+            max-width: 1600px;
+            width: 100%;
+            font-size: 28px;
+            text-align: center;
+            margin: 0 auto;
+            padding: 40px 0;
+            /* espaço vertical */
+        }
 
 
-/* Itens (caixas da comparação) */
-.comparison-side {
-    flex: 1;
-    background: rgba(255, 255, 255, 0.05);
-    padding: 40px 35px;
-    border-radius: 20px;
-    transition: all 0.5s ease;
-    color: #fff;
-}
+        /* Itens (caixas da comparação) */
+        .comparison-side {
+            flex: 1;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 40px 35px;
+            border-radius: 20px;
+            transition: all 0.5s ease;
+            color: #fff;
+        }
 
-/* Esquerda (magenta) */
-.comparison-left {
-    border: 3px solid #ff00ff;
-    box-shadow: 0 0 40px rgba(255, 0, 255, 0.3);
-}
+        /* Esquerda (magenta) */
+        .comparison-left {
+            border: 3px solid #ff00ff;
+            box-shadow: 0 0 40px rgba(255, 0, 255, 0.3);
+        }
 
-.comparison-left:hover {
-    box-shadow: 0 0 80px rgba(255, 0, 255, 0.6);
-    transform: translateX(-10px) scale(1.02);
-}
+        .comparison-left:hover {
+            box-shadow: 0 0 80px rgba(255, 0, 255, 0.6);
+            transform: translateX(-10px) scale(1.02);
+        }
 
-/* Direita (ciano) */
-.comparison-right {
-    border: 3px solid #00ffff;
-    box-shadow: 0 0 40px rgba(0, 255, 255, 0.3);
-}
+        /* Direita (ciano) */
+        .comparison-right {
+            border: 3px solid #00ffff;
+            box-shadow: 0 0 40px rgba(0, 255, 255, 0.3);
+        }
 
-.comparison-right:hover {
-    box-shadow: 0 0 80px rgba(0, 255, 255, 0.6);
-    transform: translateX(10px) scale(1.02);
-}
+        .comparison-right:hover {
+            box-shadow: 0 0 80px rgba(0, 255, 255, 0.6);
+            transform: translateX(10px) scale(1.02);
+        }
 
-/* O “VS” no meio */
-.vs-divider {
-    font-size: 6em;
-    font-family: 'Orbitron', sans-serif;
-    background: linear-gradient(135deg, #ff00ff, #00ffff);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    animation: rotate-vs 4s linear infinite;
-    flex-shrink: 0;
-}
+        /* O “VS” no meio */
+        .vs-divider {
+            font-size: 6em;
+            font-family: 'Orbitron', sans-serif;
+            background: linear-gradient(135deg, #ff00ff, #00ffff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: rotate-vs 4s linear infinite;
+            flex-shrink: 0;
+        }
 
-/* Animação do “VS” */
-@keyframes rotate-vs {
-    from { transform: rotate(0deg); }
-    to { transform: rotate(360deg); }
-}
 
+
+        @keyframes rotate-vs {
+            from {
+                transform: rotate(0deg);
+            }
+
+            to {
+                transform: rotate(360deg);
+            }
+        }
 
         .comparison-side h3 {
             font-size: 2.3em;
             margin-bottom: 25px;
         }
 
-        .comparison-left h3 { color: #ff00ff; }
-        .comparison-right h3 { color: #00ffff; }
+        .comparison-left h3 {
+            color: #ff00ff;
+        }
+
+        .comparison-right h3 {
+            color: #00ffff;
+        }
 
         .battle-list {
             list-style: none;
@@ -303,135 +340,172 @@
             font-size: 1.5em;
         }
 
-        .comparison-left li::before { color: #ff00ff; }
-        .comparison-right li::before { color: #00ffff; }
+        .comparison-left li::before {
+            color: #ff00ff;
+        }
+
+        .comparison-right li::before {
+            color: #00ffff;
+        }
 
         /* SLIDE 4: Profissões em Linha */
         .professions-line {
-    display: flex;
-    justify-content: space-between;
-    gap: 40px; /* mais espaço entre os cards */
-    max-width: 1600px; /* deixa a linha mais larga */
-    margin: 80px auto; /* adiciona respiro acima e abaixo */
-    flex-wrap: nowrap;
-    font-size: 22px; /* aumenta o tamanho base das fontes */
-}
+            display: flex;
+            justify-content: space-between;
+            gap: 40px;
+            /* mais espaço entre os cards */
+            max-width: 1600px;
+            /* deixa a linha mais larga */
+            margin: 80px auto;
+            /* adiciona respiro acima e abaixo */
+            flex-wrap: nowrap;
+            font-size: 22px;
+            /* aumenta o tamanho base das fontes */
+        }
 
-.profession-item {
-    flex: 0 0 calc(25% - 30px); /* mantém 4 cards, mas com mais largura */
-    background: linear-gradient(135deg, rgba(255, 0, 255, 0.15), rgba(0, 255, 255, 0.15));
-    border: 3px solid #ff00ff;
-    border-radius: 25px;
-    padding: 60px 40px; /* aumenta o tamanho interno dos cards */
-    text-align: center;
-    transition: all 0.4s ease;
-    cursor: pointer;
-    min-width: 0;
-    color: #fff;
-}
+        .profession-item {
+            flex: 0 0 calc(25% - 30px);
+            /* mantém 4 cards, mas com mais largura */
+            background: linear-gradient(135deg, rgba(255, 0, 255, 0.15), rgba(0, 255, 255, 0.15));
+            border: 3px solid #ff00ff;
+            border-radius: 25px;
+            padding: 60px 40px;
+            /* aumenta o tamanho interno dos cards */
+            text-align: center;
+            transition: all 0.4s ease;
+            cursor: pointer;
+            min-width: 0;
+            color: #fff;
+        }
 
-.profession-item:hover {
-    transform: translateY(-20px) scale(1.05);
-    box-shadow: 0 25px 80px rgba(255, 0, 255, 0.4);
-    border-color: #00ffff;
-}
+        .profession-item:hover {
+            transform: translateY(-20px) scale(1.05);
+            box-shadow: 0 25px 80px rgba(255, 0, 255, 0.4);
+            border-color: #00ffff;
+        }
 
-/* Ícone */
-.profession-icon {
-    font-size: 5em; /* maior destaque para os ícones */
-    margin-bottom: 25px;
-}
+        /* Ícone */
+        .profession-icon {
+            font-size: 5em;
+            /* maior destaque para os ícones */
+            margin-bottom: 25px;
+        }
 
-/* Título */
-.profession-item h4 {
-    font-size: 2em; /* aumenta título */
-    color: #00ffff;
-    margin-bottom: 16px;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-}
+        /* Título */
+        .profession-item h4 {
+            font-size: 2em;
+            /* aumenta título */
+            color: #00ffff;
+            margin-bottom: 16px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
 
-/* Texto */
-.profession-item p {
-    font-size: 1.3em;
-    line-height: 1.7;
-    color: #ddd;
-    max-width: 90%;
-    margin: 0 auto;
-}
+        /* Texto */
+        .profession-item p {
+            font-size: 1.3em;
+            line-height: 1.7;
+            color: #ddd;
+            max-width: 90%;
+            margin: 0 auto;
+        }
 
-       /* SLIDE 5: Habilidades */
-.skills-row {
-    display: flex;
-    justify-content: center;
-    gap: 100px; /* mais espaço entre as orbs */
-    flex-wrap: wrap; /* permite quebrar linha em telas menores */
-    margin-top: 80px;
-}
 
-.skill-orb {
-    width: 350px;   /* antes: 220px → bem maior */
-    height: 350px;
-    border-radius: 50%;
-    background: radial-gradient(circle at 30% 30%, rgba(255,0,255,0.5), rgba(0,255,255,0.3));
-    border: 4px solid #00ffff;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    font-size: 2.2em; /* aumenta o texto dentro */
-    font-weight: bold;
-    cursor: pointer;
-    transition: all 0.5s ease;
-    animation: float-orb 4s ease-in-out infinite;
-    position: relative;
-    box-shadow: 0 0 60px rgba(0, 255, 255, 0.3);
-}
 
-.skill-orb:nth-child(1) { animation-delay: 0s; }
-.skill-orb:nth-child(2) { animation-delay: 0.7s; }
-.skill-orb:nth-child(3) { animation-delay: 1.4s; }
+        /* SLIDE 5: Habilidades */
+        .skills-row {
+            display: flex;
+            justify-content: center;
+            gap: 100px;
+            /* mais espaço entre as orbs */
+            flex-wrap: wrap;
+            /* permite quebrar linha em telas menores */
+            margin-top: 80px;
+        }
 
-@keyframes float-orb {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-25px); }
-}
+        .skill-orb {
+            width: 350px;
+            /* antes: 220px → bem maior */
+            height: 350px;
+            border-radius: 50%;
+            background: radial-gradient(circle at 30% 30%, rgba(255, 0, 255, 0.5), rgba(0, 255, 255, 0.3));
+            border: 4px solid #00ffff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.2em;
+            /* aumenta o texto dentro */
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.5s ease;
+            animation: float-orb 4s ease-in-out infinite;
+            position: relative;
+            box-shadow: 0 0 60px rgba(0, 255, 255, 0.3);
+        }
 
-.skill-orb:hover {
-    box-shadow: 0 0 120px rgba(0,255,255,0.8);
-    transform: scale(1.15);
-}
+        .skill-orb:nth-child(1) {
+            animation-delay: 0s;
+        }
 
-/* Ícone dentro da orb */
-.skill-orb .icon {
-    font-size: 4.5em; /* ícone bem maior */
-    margin-bottom: 15px;
-}
+        .skill-orb:nth-child(2) {
+            animation-delay: 0.7s;
+        }
 
-/* Tooltip */
-.skill-tooltip {
-    position: absolute;
-    bottom: -160px; /* ajustado pro novo tamanho */
-    left: 50%;
-    transform: translateX(-50%) scale(0);
-    width: 340px;
-    background: rgba(0, 0, 0, 0.95);
-    border: 2px solid #00ffff;
-    border-radius: 15px;
-    padding: 25px;
-    font-size: 0.9em;
-    line-height: 1.7;
-    color: #fff;
-    opacity: 0;
-    transition: all 0.4s ease;
-    pointer-events: none;
-    z-index: 100;
-}
+        .skill-orb:nth-child(3) {
+            animation-delay: 1.4s;
+        }
 
-.skill-orb:hover .skill-tooltip {
-    opacity: 1;
-    transform: translateX(-50%) scale(1);
-}
+        @keyframes float-orb {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-25px);
+            }
+        }
+
+        .skill-orb:hover {
+            box-shadow: 0 0 120px rgba(0, 255, 255, 0.8);
+            transform: scale(1.15);
+        }
+
+        /* Ícone dentro da orb */
+        .skill-orb .icon {
+            font-size: 4.5em;
+            /* ícone bem maior */
+            margin-bottom: 15px;
+        }
+
+        /* Tooltip */
+        .skill-tooltip {
+            position: absolute;
+            bottom: -160px;
+            /* ajustado pro novo tamanho */
+            left: 50%;
+            transform: translateX(-50%) scale(0);
+            width: 340px;
+            background: rgba(0, 0, 0, 0.95);
+            border: 2px solid #00ffff;
+            border-radius: 15px;
+            padding: 25px;
+            font-size: 0.9em;
+            line-height: 1.7;
+            color: #fff;
+            opacity: 0;
+            transition: all 0.4s ease;
+            pointer-events: none;
+            z-index: 100;
+        }
+
+        .skill-orb:hover .skill-tooltip {
+            opacity: 1;
+            transform: translateX(-50%) scale(1);
+        }
+
 
         /* SLIDE 6: Timeline 
         .tech-timeline {
@@ -440,234 +514,259 @@
             margin-bottom: 60px;
         }*/
 
-       /* SLIDE 6: Linha do Tempo */
-.tech-timeline {
-    position: relative;
-    height: 280px; /* antes 160px — deixa mais espaço vertical */
-    margin: 0 auto 100px;
-    max-width: 1600px; /* permite expandir sem sair da tela */
-    width: 100%;
-}
+        /* SLIDE 6: Linha do Tempo */
+        .tech-timeline {
+            position: relative;
+            height: 280px;
+            /* antes 160px — deixa mais espaço vertical */
+            margin: 0 auto 100px;
+            max-width: 1600px;
+            /* permite expandir sem sair da tela */
+            width: 100%;
+        }
 
-.timeline-track {
-    position: absolute;
-    top: 50%;
-    left: 0;
-    right: 0;
-    height: 14px; /* mais grossa e visível */
-    background: linear-gradient(90deg, #ff00ff, #00ffff, #ff00ff);
-    background-size: 200% 100%;
-    animation: flow-track 3s linear infinite;
-    box-shadow: 0 0 50px rgba(0, 255, 255, 0.9);
-    border-radius: 10px;
-}
+        .timeline-track {
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 14px;
+            /* mais grossa e visível */
+            background: linear-gradient(90deg, #ff00ff, #00ffff, #ff00ff);
+            background-size: 200% 100%;
+            animation: flow-track 3s linear infinite;
+            box-shadow: 0 0 50px rgba(0, 255, 255, 0.9);
+            border-radius: 10px;
+        }
 
-@keyframes flow-track {
-    0% { background-position: 0% 50%; }
-    100% { background-position: 200% 50%; }
-}
+        @keyframes flow-track {
+            0% {
+                background-position: 0% 50%;
+            }
 
-/* Cada nó (ponto da linha) */
-.timeline-node {
-    position: absolute;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    text-align: center;
-    max-width: 280px; /* antes 200px */
-}
+            100% {
+                background-position: 200% 50%;
+            }
+        }
 
-.node-dot {
-    width: 50px; /* maior */
-    height: 50px;
-    background: #00ffff;
-    border: 6px solid #000;
-    border-radius: 50%;
-    margin: 0 auto 25px;
-    box-shadow: 0 0 50px #00ffff;
-    cursor: pointer;
-    transition: all 0.3s ease;
-}
+        /* Cada nó (ponto da linha) */
+        .timeline-node {
+            position: absolute;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            max-width: 280px;
+            /* antes 200px */
+        }
 
-.node-dot:hover {
-    transform: scale(1.6);
-    box-shadow: 0 0 100px #00ffff;
-}
+        .node-dot {
+            width: 50px;
+            /* maior */
+            height: 50px;
+            background: #00ffff;
+            border: 6px solid #000;
+            border-radius: 50%;
+            margin: 0 auto 25px;
+            box-shadow: 0 0 50px #00ffff;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
 
-.node-dot.active {
-    width: 60px;
-    height: 60px;
-    background: #ff00ff;
-    box-shadow: 0 0 80px #ff00ff;
-}
+        .node-dot:hover {
+            transform: scale(1.6);
+            box-shadow: 0 0 100px #00ffff;
+        }
 
-/* Conteúdo de cada nó */
-.node-content {
-    text-align: center;
-    min-width: 180px;
-    max-width: 240px;
-    word-wrap: break-word;
-}
+        .node-dot.active {
+            width: 60px;
+            height: 60px;
+            background: #ff00ff;
+            box-shadow: 0 0 80px #ff00ff;
+        }
 
-/* Ano */
-.node-year {
-    font-family: 'Orbitron', sans-serif;
-    font-size: 2.4em; /* antes 1.6em */
-    color: #00ffff;
-    font-weight: bold;
-    margin-bottom: 30px;
-}
+        /* Conteúdo de cada nó */
+        .node-content {
+            text-align: center;
+            min-width: 180px;
+            max-width: 240px;
+            word-wrap: break-word;
+        }
 
-/* Título */
-.node-title {
-    font-size: 1.8em; /* antes 1.4em */
-    color: #fff;
-    font-weight: bold;
-    margin-bottom: 6px;
-}
+        /* Ano */
+        .node-year {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2.4em;
+            /* antes 1.6em */
+            color: #00ffff;
+            font-weight: bold;
+            margin-bottom: 30px;
+        }
 
-/* Descrição */
-.node-desc {
-    font-size: 1.3em; /* antes 1.1em */
-    color: #ccc;
-    line-height: 1.6;
-}
+        /* Título */
+        .node-title {
+            font-size: 1.8em;
+            /* antes 1.4em */
+            color: #fff;
+            font-weight: bold;
+            margin-bottom: 6px;
+        }
 
-/* Estatísticas abaixo da timeline */
-.impact-stats {
-    display: flex;
-    justify-content: space-around;
-    gap: 60px; /* mais espaço */
-    flex-wrap: wrap;
-    margin-top: 80px;
-}
+        /* Descrição */
+        .node-desc {
+            font-size: 1.3em;
+            /* antes 1.1em */
+            color: #ccc;
+            line-height: 1.6;
+        }
 
-.impact-box {
-    flex: 1;
-    min-width: 300px;
-    background: linear-gradient(135deg, rgba(255, 0, 255, 0.2), rgba(0, 255, 255, 0.15));
-    border: 3px solid #00ffff;
-    border-radius: 25px;
-    padding: 50px 40px; /* aumenta os boxes */
-    text-align: center;
-    cursor: pointer;
-    transition: all 0.5s ease;
-}
+        /* Estatísticas abaixo da timeline */
+        .impact-stats {
+            display: flex;
+            justify-content: space-around;
+            gap: 60px;
+            /* mais espaço */
+            flex-wrap: wrap;
+            margin-top: 80px;
+        }
 
-.impact-box:hover {
-    transform: translateY(-20px) scale(1.05);
-    box-shadow: 0 40px 100px rgba(0, 255, 255, 0.6);
-    border-color: #ff00ff;
-}
+        .impact-box {
+            flex: 1;
+            min-width: 300px;
+            background: linear-gradient(135deg, rgba(255, 0, 255, 0.2), rgba(0, 255, 255, 0.15));
+            border: 3px solid #00ffff;
+            border-radius: 25px;
+            padding: 50px 40px;
+            /* aumenta os boxes */
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.5s ease;
+        }
 
-.impact-number {
-    font-family: 'Orbitron', sans-serif;
-    font-size: 4em; /* maior e mais visível */
-    background: linear-gradient(135deg, #ff00ff, #00ffff);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    font-weight: bold;
-    margin-bottom: 16px;
-}
+        .impact-box:hover {
+            transform: translateY(-20px) scale(1.05);
+            box-shadow: 0 40px 100px rgba(0, 255, 255, 0.6);
+            border-color: #ff00ff;
+        }
 
-.impact-label {
-    font-size: 1.6em;
-    color: #fff;
-    font-weight: 600;
-}
+        .impact-number {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 4em;
+            /* maior e mais visível */
+            background: linear-gradient(135deg, #ff00ff, #00ffff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: bold;
+            margin-bottom: 16px;
+        }
 
-
-        /*  SLIDE 7: Ação AGORA */
-.slide-7-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;      /* centraliza horizontalmente */
-    justify-content: center;   /* centraliza verticalmente */
-    height: 100vh;            /* ocupa a tela inteira */
-    gap: 80px;                 /* mais espaço entre título e cards */
-    padding: 60px 40px;
-    text-align: center;
-}
-
-.now-grid {
-    display: flex;
-    justify-content: center;  /* centraliza os cards */
-    gap: 80px;                /* aumenta espaço entre os cards */
-    width: 100%;
-    max-width: 1800px;        /* mais largura para cards grandes */
-    align-items: flex-start;
-    flex-wrap: nowrap;        /* mantém 3 cards enfileirados */
-}
-
-.now-card {
-    flex: 0 0 28%;            /* mantém 3 cards em linha */
-    height: 450px;            /* aumenta altura do card */
-    background: radial-gradient(circle at 30% 30%, rgba(255, 0, 255, 0.4), rgba(0, 255, 255, 0.25));
-    border: 4px solid #00ffff;
-    border-radius: 35px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
-    padding: 40px 30px;       /* aumenta espaço interno */
-    box-sizing: border-box;
-    cursor: pointer;
-    transition: all 0.6s ease;
-    animation: float-now-card 4s ease-in-out infinite;
-}
-
-/* Ícones do card */
-.now-icon {
-    font-size: 5rem;          /* ícones bem grandes */
-    margin-bottom: 25px;
-}
-
-/* Título do card */
-.now-title {
-    font-size: 2.5rem;        /* título grande e legível */
-    font-weight: bold;
-    margin-bottom: 20px;
-}
-
-/* Texto do card */
-.now-text {
-    font-size: 1.6rem;        /* texto maior e fácil de ler */
-    text-align: center;
-    line-height: 1.8;
-    flex-grow: 1;
-    overflow: hidden;
-}
+        .impact-label {
+            font-size: 1.6em;
+            color: #fff;
+            font-weight: 600;
+        }
 
 
-/* Ajuste para telas menores */
-@media (max-width: 1024px) {
-    .now-grid {
-        gap: 30px;
-        flex-wrap: wrap;
-        justify-content: center;
-    }
+        /* SLIDE 7: Ação AGORA */
+        .slide-7-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            /* centraliza horizontalmente */
+            justify-content: center;
+            /* centraliza verticalmente */
+            height: 100vh;
+            /* ocupa a tela inteira */
+            gap: 80px;
+            /* mais espaço entre título e cards */
+            padding: 60px 40px;
+            text-align: center;
+        }
 
-    .now-card {
-        flex: 1 1 280px;
-        min-height: auto; /* deixa a altura se ajustar ao conteúdo */
-    }
-}
+        .now-grid {
+            display: flex;
+            justify-content: center;
+            /* centraliza os cards */
+            gap: 80px;
+            /* aumenta espaço entre os cards */
+            width: 100%;
+            max-width: 1800px;
+            /* mais largura para cards grandes */
+            align-items: flex-start;
+            flex-wrap: nowrap;
+            /* mantém 3 cards enfileirados */
+        }
 
-@media (max-width: 768px) {
-    .now-text {
-        font-size: clamp(0.8rem, 2.5vw, 1rem);
-        line-height: 1.3;
-    }
-}
+        .now-card {
+            flex: 0 0 28%;
+            /* mantém 3 cards em linha */
+            height: 450px;
+            /* aumenta altura do card */
+            background: radial-gradient(circle at 30% 30%, rgba(255, 0, 255, 0.4), rgba(0, 255, 255, 0.25));
+            border: 4px solid #00ffff;
+            border-radius: 35px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            padding: 40px 30px;
+            /* aumenta espaço interno */
+            box-sizing: border-box;
+            cursor: pointer;
+            transition: all 0.6s ease;
+            animation: float-now-card 4s ease-in-out infinite;
+        }
+
+        /* Ícones do card */
+        .now-icon {
+            font-size: 5rem;
+            /* ícones bem grandes */
+            margin-bottom: 25px;
+        }
+
+        /* Título do card */
+        .now-title {
+            font-size: 28px;
+            /* título grande e legível */
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        /* Texto do card */
+        .now-text {
+            font-size: 28px;
+            /* texto maior e fácil de ler */
+            text-align: center;
+            line-height: 1.8;
+            flex-grow: 1;
+            overflow: hidden;
+        }
 
 
 
-        .now-card:nth-child(1) { animation-delay: 0s; }
-        .now-card:nth-child(2) { animation-delay: 0.7s; }
-        .now-card:nth-child(3) { animation-delay: 1.4s; }
+
+
+        .now-card:nth-child(1) {
+            animation-delay: 0s;
+        }
+
+        .now-card:nth-child(2) {
+            animation-delay: 0.7s;
+        }
+
+        .now-card:nth-child(3) {
+            animation-delay: 1.4s;
+        }
 
         @keyframes float-now-card {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-20px); }
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-20px);
+            }
         }
 
         .now-card:hover {
@@ -683,14 +782,14 @@
 
         .now-title {
             font-family: 'Orbitron', sans-serif;
-            font-size: 2.5em;
+            font-size: 28px;
             color: #00ffff;
             font-weight: bold;
             margin-bottom: 15px;
         }
 
         .now-text {
-            font-size: 1.4em;
+            font-size: 24px;
             color: #fff;
             line-height: 1.6;
             text-align: center;
@@ -711,8 +810,13 @@
         }
 
         @keyframes rotate-message-icon {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
+            from {
+                transform: rotate(0deg);
+            }
+
+            to {
+                transform: rotate(360deg);
+            }
         }
 
         .message-main {
@@ -750,25 +854,34 @@
             justify-content: center;
             font-size: 2em;
             color: #fff;
-            box-shadow: 0 0 40px rgba(0,255,255,0.6);
+            box-shadow: 0 0 40px rgba(0, 255, 255, 0.6);
             transition: all 0.3s ease;
         }
 
         .nav-orb:hover {
             transform: scale(1.2);
-            box-shadow: 0 0 80px rgba(0,255,255,1);
+            box-shadow: 0 0 80px rgba(0, 255, 255, 1);
         }
 
         @media (max-width: 1200px) {
-            .cards-grid, .professions-line, .now-grid, .impact-stats { 
-                flex-wrap: wrap; 
+
+            .cards-grid,
+            .professions-line,
+            .now-grid,
+            .impact-stats {
+                flex-wrap: wrap;
             }
-            .info-card, .profession-item, .now-card, .impact-box {
+
+            .info-card,
+            .profession-item,
+            .now-card,
+            .impact-box {
                 min-width: 250px;
             }
         }
     </style>
 </head>
+
 <body>
     <!-- Canvas 3D de fundo -->
     <canvas id="canvas3d"></canvas>
@@ -786,7 +899,8 @@
             <div class="portal-scene">
                 <h1 class="hologram-title">O FUTURO DO TRABALHO</h1>
                 <p class="subtitle-glitch">Como a IA está redesenhando o amanhã</p>
-                <p class="author-tag">Amanda Ramos de Siqueira<br>Informática para Negócios - 3º Semestre | FATEC Mauá</p>
+                <p class="author-tag">Amanda Ramos de Siqueira<br>Informática para Negócios - 3º Semestre | FATEC Mauá
+                </p>
             </div>
         </div>
 
@@ -819,6 +933,8 @@
             <div style="width: 100%;">
                 <h2 class="section-title-3d">O Grande Desafio</h2>
                 <div class="comparison-grid">
+
+
                     <div class="comparison-side comparison-left">
                         <h3>⚡ AUTOMAÇÃO</h3>
                         <ul class="battle-list">
@@ -879,17 +995,20 @@
                     <div class="skill-orb">
                         <div class="icon">✨</div>
                         <div>Criatividade</div>
-                        <div class="skill-tooltip">Capacidade de gerar ideias inovadoras e soluções originais que a IA não consegue replicar</div>
+                        <div class="skill-tooltip">Capacidade de gerar ideias inovadoras e soluções originais que a IA
+                            não consegue replicar</div>
                     </div>
                     <div class="skill-orb">
                         <div class="icon">❤️</div>
                         <div>Empatia</div>
-                        <div class="skill-tooltip">Compreender emoções humanas e criar conexões genuínas que máquinas jamais poderão fazer</div>
+                        <div class="skill-tooltip">Compreender emoções humanas e criar conexões genuínas que máquinas
+                            jamais poderão fazer</div>
                     </div>
                     <div class="skill-orb">
                         <div class="icon">🧠</div>
                         <div>Pensamento Crítico</div>
-                        <div class="skill-tooltip">Analisar informações complexas, questionar e tomar decisões éticas fundamentadas</div>
+                        <div class="skill-tooltip">Analisar informações complexas, questionar e tomar decisões éticas
+                            fundamentadas</div>
                     </div>
                 </div>
             </div>
@@ -899,10 +1018,10 @@
         <div class="slide" data-slide="6">
             <div style="width: 100%; max-width: 1800px;">
                 <h2 class="section-title-3d">Linha do Tempo: 2020 → 2030</h2>
-                
+
                 <div class="tech-timeline">
                     <div class="timeline-track"></div>
-                    
+
                     <div class="timeline-node" style="left: 0%;">
                         <div class="node-dot"></div>
                         <div class="node-content">
@@ -958,253 +1077,241 @@
                     </div>
                 </div>
 
-                
+
             </div>
         </div>
 
         <!-- Slide 7: 3 A's da IA -->
-<div class="slide" data-slide="7">
-    <div class="slide-7-container"> <!-- Container centralizado para o slide 7 -->
-        <h2 class="section-title-3d">O Momento É Agora</h2>
-        
-        <div class="now-grid">
-            <div class="now-card">
-                <div class="now-icon">📚</div>
-                <div class="now-title">APRENDA</div>
-                <div class="now-text">Domine a IA<br>e esteja preparado para o futuro</div>
-            </div>
+        <div class="slide" data-slide="7">
+            <div class="slide-7-container"> <!-- Container centralizado para o slide 7 -->
+                <h2 class="section-title-3d">O Momento É Agora</h2>
 
-            <div class="now-card">
-                <div class="now-icon">⚡</div>
-                <div class="now-title">ADAPTE</div>
-                <div class="now-text">Mude com a tecnologia<br>Evolua com o mercado</div>
-            </div>
+                <div class="now-grid">
+                    <div class="now-card">
+                        <div class="now-icon">📚</div>
+                        <div class="now-title">APRENDA</div>
+                        <div class="now-text">Domine a IA<br>e esteja preparado para o futuro</div>
+                    </div>
 
-            <div class="now-card">
-                <div class="now-icon">🚀</div>
-                <div class="now-title">APROVEITE</div>
-                <div class="now-text">Potencialize suas habilidades<br>Seja protagonista da nova era</div>
+                    <div class="now-card">
+                        <div class="now-icon">⚡</div>
+                        <div class="now-title">ADAPTE</div>
+                        <div class="now-text">Mude com a tecnologia<br>Evolua com o mercado</div>
+                    </div>
+
+                    <div class="now-card">
+                        <div class="now-icon">🚀</div>
+                        <div class="now-title">APROVEITE</div>
+                        <div class="now-text">Potencialize suas habilidades<br>Seja protagonista da nova era</div>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
-</div>
 
 
-    <!-- Botão de navegação -->
-    <button class="nav-orb" id="navButton" onclick="nextSlide()">→</button>
+        <!-- Botão de navegação -->
+        <button class="nav-orb" id="navButton" onclick="nextSlide()">→</button>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-    <script>
-        // === CONFIGURAÇÃO 3D ===
-        const canvas = document.getElementById('canvas3d');
-        const scene = new THREE.Scene();
-        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-        const renderer = new THREE.WebGLRenderer({ canvas, alpha: true });
-        renderer.setSize(window.innerWidth, window.innerHeight);
-        camera.position.z = 50;
-
-        // Criar geometria holográfica
-        const geometry = new THREE.TorusGeometry(15, 3, 16, 100);
-        const material = new THREE.MeshBasicMaterial({ 
-            color: 0x00ffff, 
-            wireframe: true,
-            transparent: true,
-            opacity: 0.15
-        });
-        const torus = new THREE.Mesh(geometry, material);
-        scene.add(torus);
-
-        // Partículas 3D
-        const particlesGeometry = new THREE.BufferGeometry();
-        const particleCount = 3000;
-        const positions = new Float32Array(particleCount * 3);
-
-        for(let i = 0; i < particleCount * 3; i++) {
-            positions[i] = (Math.random() - 0.5) * 100;
-        }
-
-        particlesGeometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
-        const particlesMaterial = new THREE.PointsMaterial({
-            color: 0x00ffff,
-            size: 0.1,
-            transparent: true,
-            opacity: 0.6
-        });
-
-        const particlesMesh = new THREE.Points(particlesGeometry, particlesMaterial);
-        scene.add(particlesMesh);
-
-        // Animação 3D
-        function animate3D() {
-            requestAnimationFrame(animate3D);
-            torus.rotation.x += 0.005;
-            torus.rotation.y += 0.005;
-            particlesMesh.rotation.y += 0.001;
-            renderer.render(scene, camera);
-        }
-        animate3D();
-
-        // Responsividade
-        window.addEventListener('resize', () => {
-            camera.aspect = window.innerWidth / window.innerHeight;
-            camera.updateProjectionMatrix();
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+        <script>
+            // === CONFIGURAÇÃO 3D ===
+            const canvas = document.getElementById('canvas3d');
+            const scene = new THREE.Scene();
+            const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+            const renderer = new THREE.WebGLRenderer({ canvas, alpha: true });
             renderer.setSize(window.innerWidth, window.innerHeight);
-        });
+            camera.position.z = 50;
 
-        // === SISTEMA DE SLIDES ===
-        let currentSlide = 1;
-        const totalSlides = 7;
+            // Criar geometria holográfica
+            const geometry = new THREE.TorusGeometry(15, 3, 16, 100);
+            const material = new THREE.MeshBasicMaterial({
+                color: 0x00ffff,
+                wireframe: true,
+                transparent: true,
+                opacity: 0.15
+            });
+            const torus = new THREE.Mesh(geometry, material);
+            scene.add(torus);
 
-        // Criar indicadores de progresso
-        const progressIndicator = document.getElementById('progressIndicator');
-        for(let i = 1; i <= totalSlides; i++) {
-            const dot = document.createElement('div');
-            dot.className = 'progress-dot';
-            if(i === 1) dot.classList.add('active');
-            dot.onclick = () => goToSlide(i);
-            progressIndicator.appendChild(dot);
-        }
+            // Partículas 3D
+            const particlesGeometry = new THREE.BufferGeometry();
+            const particleCount = 3000;
+            const positions = new Float32Array(particleCount * 3);
 
-        function updateUI() {
-            document.getElementById('slideNumber').textContent = String(currentSlide).padStart(2, '0');
-            
-            // Atualizar dots
-            document.querySelectorAll('.progress-dot').forEach((dot, index) => {
-                dot.classList.toggle('active', index + 1 === currentSlide);
+            for (let i = 0; i < particleCount * 3; i++) {
+                positions[i] = (Math.random() - 0.5) * 100;
+            }
+
+            particlesGeometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+            const particlesMaterial = new THREE.PointsMaterial({
+                color: 0x00ffff,
+                size: 0.1,
+                transparent: true,
+                opacity: 0.6
             });
 
-            // Atualizar botão
-            const navButton = document.getElementById('navButton');
-            if(currentSlide === totalSlides) {
-                navButton.innerHTML = '🔄';
-            } else {
-                navButton.innerHTML = '→';
+            const particlesMesh = new THREE.Points(particlesGeometry, particlesMaterial);
+            scene.add(particlesMesh);
+
+            // Animação 3D
+            function animate3D() {
+                requestAnimationFrame(animate3D);
+                torus.rotation.x += 0.005;
+                torus.rotation.y += 0.005;
+                particlesMesh.rotation.y += 0.001;
+                renderer.render(scene, camera);
+            }
+            animate3D();
+
+            // Responsividade
+            window.addEventListener('resize', () => {
+                camera.aspect = window.innerWidth / window.innerHeight;
+                camera.updateProjectionMatrix();
+                renderer.setSize(window.innerWidth, window.innerHeight);
+            });
+
+            // === SISTEMA DE SLIDES ===
+            let currentSlide = 1;
+            const totalSlides = 7;
+
+            // Criar indicadores de progresso
+            const progressIndicator = document.getElementById('progressIndicator');
+            for (let i = 1; i <= totalSlides; i++) {
+                const dot = document.createElement('div');
+                dot.className = 'progress-dot';
+                if (i === 1) dot.classList.add('active');
+                dot.onclick = () => goToSlide(i);
+                progressIndicator.appendChild(dot);
             }
 
-            // Mudar cor do torus
-            const colors = [0x00ffff, 0xff00ff, 0x00ff00, 0xffaa00, 0xff0066, 0x00ffff, 0xff00ff];
-            torus.material.color.setHex(colors[currentSlide - 1]);
-        }
+            function updateUI() {
+                document.getElementById('slideNumber').textContent = String(currentSlide).padStart(2, '0');
 
-        function nextSlide() {
-            if(currentSlide < totalSlides) {
-                goToSlide(currentSlide + 1);
-            } else {
-                goToSlide(1);
+                // Atualizar dots
+                document.querySelectorAll('.progress-dot').forEach((dot, index) => {
+                    dot.classList.toggle('active', index + 1 === currentSlide);
+                });
+
+                // Atualizar botão
+                const navButton = document.getElementById('navButton');
+                if (currentSlide === totalSlides) {
+                    navButton.innerHTML = '🔄';
+                } else {
+                    navButton.innerHTML = '→';
+                }
+
+                // Mudar cor do torus
+                const colors = [0x00ffff, 0xff00ff, 0x00ff00, 0xffaa00, 0xff0066, 0x00ffff, 0xff00ff];
+                torus.material.color.setHex(colors[currentSlide - 1]);
             }
-        }
 
-        function goToSlide(slideNum) {
-            document.querySelector('.slide.active').classList.remove('active');
-            currentSlide = slideNum;
-            document.querySelector(`[data-slide="${slideNum}"]`).classList.add('active');
+            function nextSlide() {
+                if (currentSlide < totalSlides) {
+                    goToSlide(currentSlide + 1);
+                } else {
+                    goToSlide(1);
+                }
+            }
+
+            function goToSlide(slideNum) {
+                document.querySelector('.slide.active').classList.remove('active');
+                currentSlide = slideNum;
+                document.querySelector(`[data-slide="${slideNum}"]`).classList.add('active');
+                updateUI();
+            }
+
+            // === ATALHOS DE TECLADO ===
+            document.addEventListener('keydown', (e) => {
+                if (e.target.tagName === 'INPUT') return;
+
+                if (e.key === 'ArrowRight' || e.key === ' ' || e.code === 'Space') {
+                    e.preventDefault();
+                    nextSlide();
+                }
+                if (e.key === 'ArrowLeft' && currentSlide > 1) {
+                    e.preventDefault();
+                    goToSlide(currentSlide - 1);
+                }
+                if (e.key === 'Home') {
+                    e.preventDefault();
+                    goToSlide(1);
+                }
+                if (e.key === 'End') {
+                    e.preventDefault();
+                    goToSlide(totalSlides);
+                }
+            });
+
+            // === EFEITOS INTERATIVOS ===
+
+            // Cards 3D seguem o mouse
+            document.querySelectorAll('.info-card, .profession-item').forEach(card => {
+                card.addEventListener('mousemove', (e) => {
+                    const rect = card.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+
+                    const centerX = rect.width / 2;
+                    const centerY = rect.height / 2;
+
+                    const rotateX = (y - centerY) / 10;
+                    const rotateY = (centerX - x) / 10;
+
+                    card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-20px)`;
+                });
+
+                card.addEventListener('mouseleave', () => {
+                    card.style.transform = '';
+                });
+            });
+
+            // Orbs de habilidade
+            document.querySelectorAll('.skill-orb').forEach(orb => {
+                orb.addEventListener('click', () => {
+                    orb.style.animation = 'none';
+                    setTimeout(() => {
+                        orb.style.animation = '';
+                    }, 10);
+                });
+            });
+
+            // Timeline nodes
+            document.querySelectorAll('.node-dot').forEach(dot => {
+                dot.addEventListener('click', function () {
+                    this.style.transform = 'scale(2)';
+                    setTimeout(() => {
+                        this.style.transform = '';
+                    }, 500);
+                });
+            });
+
+            // Impact boxes
+            document.querySelectorAll('.impact-box').forEach(box => {
+                box.addEventListener('mouseenter', function () {
+                    const number = this.querySelector('.impact-number');
+                    number.style.transform = 'scale(1.2) rotate(5deg)';
+                });
+                box.addEventListener('mouseleave', function () {
+                    const number = this.querySelector('.impact-number');
+                    number.style.transform = '';
+                });
+            });
+
+            // Now cards
+            document.querySelectorAll('.now-card').forEach(card => {
+                card.addEventListener('click', function () {
+                    this.style.animation = 'none';
+                    this.style.transform = 'scale(1.3) rotate(360deg)';
+                    setTimeout(() => {
+                        this.style.animation = '';
+                        this.style.transform = '';
+                    }, 1000);
+                });
+            });
+
+            // Inicializar
             updateUI();
-        }
-
-        // === ATALHOS DE TECLADO ===
-        document.addEventListener('keydown', (e) => {
-            if(e.target.tagName === 'INPUT') return;
-
-            if(e.key === 'ArrowRight' || e.key === ' ' || e.code === 'Space') {
-                e.preventDefault();
-                nextSlide();
-            }
-            if(e.key === 'ArrowLeft' && currentSlide > 1) {
-                e.preventDefault();
-                goToSlide(currentSlide - 1);
-            }
-            if(e.key === 'Home') {
-                e.preventDefault();
-                goToSlide(1);
-            }
-            if(e.key === 'End') {
-                e.preventDefault();
-                goToSlide(totalSlides);
-            }
-        });
-
-        // === EFEITOS INTERATIVOS ===
-        
-        // Cards 3D seguem o mouse
-        document.querySelectorAll('.info-card, .profession-item').forEach(card => {
-            card.addEventListener('mousemove', (e) => {
-                const rect = card.getBoundingClientRect();
-                const x = e.clientX - rect.left;
-                const y = e.clientY - rect.top;
-                
-                const centerX = rect.width / 2;
-                const centerY = rect.height / 2;
-                
-                const rotateX = (y - centerY) / 10;
-                const rotateY = (centerX - x) / 10;
-                
-                card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-20px)`;
-            });
-            
-            card.addEventListener('mouseleave', () => {
-                card.style.transform = '';
-            });
-        });
-
-        // Orbs de habilidade
-        document.querySelectorAll('.skill-orb').forEach(orb => {
-            orb.addEventListener('click', () => {
-                orb.style.animation = 'none';
-                setTimeout(() => {
-                    orb.style.animation = '';
-                }, 10);
-            });
-        });
-
-        // Timeline nodes
-        document.querySelectorAll('.node-dot').forEach(dot => {
-            dot.addEventListener('click', function() {
-                this.style.transform = 'scale(2)';
-                setTimeout(() => {
-                    this.style.transform = '';
-                }, 500);
-            });
-        });
-
-        // Impact boxes
-        document.querySelectorAll('.impact-box').forEach(box => {
-            box.addEventListener('mouseenter', function() {
-                const number = this.querySelector('.impact-number');
-                number.style.transform = 'scale(1.2) rotate(5deg)';
-            });
-            box.addEventListener('mouseleave', function() {
-                const number = this.querySelector('.impact-number');
-                number.style.transform = '';
-            });
-        });
-
-        // Now cards
-        document.querySelectorAll('.now-card').forEach(card => {
-            card.addEventListener('click', function() {
-                this.style.animation = 'none';
-                this.style.transform = 'scale(1.3) rotate(360deg)';
-                setTimeout(() => {
-                    this.style.animation = '';
-                    this.style.transform = '';
-                }, 1000);
-            });
-        });
-
-        // Inicializar
-        updateUI();
-    </script>
+        </script>
 </body>
+
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
